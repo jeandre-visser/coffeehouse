@@ -7,6 +7,13 @@ nav {
   background-color: rgb(104, 23, 23);
 
   color: white;
-  font-family: 'Mochiy Pop One', sans-serif;;
-}
+  font-family: 'Mochiy Pop One', sans-serif;
 
+  :hover {
+    color: black;
+  }
+
+  div {
+    cursor: pointer;
+  }
+}
