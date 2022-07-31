@@ -63,3 +63,19 @@ const getOrderWithId = function(id) {
     .catch(err => err.message)
 };
 exports.getOrderWithId = getOrderWithId;
+
+// Create user
+const createUser = function(name, phone) {
+  const queryString = `
+    INSERT INTO users (name, phone)
+    VALUES ($1, $2)
+    RETURNING id;
+  `;
+
+  return pool
+  .query(queryString, [name, phone])
+  .then(result => result.rows[0])
+  .catch(err => err.message)
+};
+exports.createUser = createUser;
+
