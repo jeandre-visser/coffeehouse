@@ -3,9 +3,14 @@ nav {
   justify-content: space-between;
   align-items: center;
 
-  padding: 2% 5%;
-  background-color: rgb(104, 23, 23);
+  position: fixed;
+  top: 0;
 
+  height: 10%;
+  width: 100%;
+  padding: 2% 5%;
+
+  background-color: rgb(104, 23, 23);
   color: white;
 
   :hover {
