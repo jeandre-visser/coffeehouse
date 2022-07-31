@@ -1,4 +1,4 @@
-INSERT INTO items (name, price, prep_time, description, photo_url)
+INSERT INTO items (name, price, prep_time, description, photo_url, category)
 Values ('Filter Coffee', 100, 1, 'A smooth, well-rounded blend of Latin American beans with subtly rich flavours of chocolate and toasted nuts, it is served fresh every day at your local Coffee House', 'https://cdn.pixabay.com/photo/2017/09/04/18/39/coffee-2714970_1280.jpg', 'hot'),
 ('Americano', 300, 2, 'Espresso shots topped with hot water create a light layer of crema culminating in this wonderfully rich cup with depth and nuance.', 'https://cdn.pixabay.com/photo/2016/11/29/12/45/beverage-1869598_1280.jpg', 'hot'),
 ('Latte', 400, 3, 'Our dark, rich espresso balanced with steamed milk and a light layer of foam. A perfect milk-forward warm-up.', 'https://cdn.pixabay.com/photo/2017/06/22/15/21/latte-art-2431160_1280.jpg', 'hot'),
