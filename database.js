@@ -79,3 +79,39 @@ const createUser = function(name, phone) {
 };
 exports.createUser = createUser;
 
+// Create order
+const createOrder = function(userId, adminId) {
+  const queryString = `
+    INSERT INTO orders (user_id, admin_id)
+    VALUES ($1, $1)
+    RETURNING id;
+  `;
+
+  return pool
+  .query(queryString, [userId, adminId])
+  .then(result => result.rows[0])
+  .catch(err => err.message)
+};
+exports.createOrder = createOrder;
+
+/**
+ * Set order status to pending
+ * @param {string} id The id of the order.
+ * @return {Promise<{}>} A promise to the order.
+ */
+
+const pendingOrder = function(id) {
+  const queryString = `
+  UPDATE orders
+  SET order_pending = TRUE
+  WHERE orders.id = $1;
+  `;
+
+  return pool
+  .query(queryString, [id])
+  .then(result => result.rows)
+  .catch(err => err.message)
+};
+exports.pendingOrder = pendingOrder;
+
+
