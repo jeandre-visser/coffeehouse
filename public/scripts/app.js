@@ -20,36 +20,35 @@ $(() => {
     return;
   });
 
+  // Toggle cold menu
+  $('.cold').on('click', () => {
+    if ($('.cold-menu').css('display') == 'none') {
+      $('#menus').slideToggle(0);
+      $('header').slideToggle(0);
+      $('.cold-menu').css('display', 'flex')
+      return;
+    }
 
-  // // Toggle cold menu
-  // $('.cold').on('click', () => {
-  //   if ($('.cold-menu').css('display') == 'none') {
-  //     $('#menus').slideToggle(0);
-  //     $('header').slideToggle(0);
-  //     $('.cold-menu').css('display', 'flex')
-  //     return;
-  //   }
+    $('#menus').slideToggle(0);
+    $('header').slideToggle(0);
+    $('.cold-menu').css('display', 'none')
+    return;
+  });
 
-  //   $('#menus').slideToggle(0);
-  //   $('header').slideToggle(0);
-  //   $('.cold-menu').css('display', 'none')
-  //   return;
-  // });
+  // Toggle baked-goods menu
+  $('.baked').on('click', () => {
+    if ($('.baked-menu').css('display') == 'none') {
+      $('#menus').slideToggle(0);
+      $('header').slideToggle(0);
+      $('.baked-menu').css('display', 'flex')
+      return;
+    }
 
-  // // // Toggle baked-goods menu
-  // $('.baked').on('click', () => {
-  //   if ($('.baked-menu').css('display') == 'none') {
-  //     $('#menus').slideToggle(0);
-  //     $('header').slideToggle(0);
-  //     $('.baked-menu').css('display', 'flex')
-  //     return;
-  //   }
-
-  //   $('#menus').slideToggle(0);
-  //   $('header').slideToggle(0);
-  //   $('.baked-menu').css('display', 'none')
-  //   return;
-  // });
+    $('#menus').slideToggle(0);
+    $('header').slideToggle(0);
+    $('.baked-menu').css('display', 'none')
+    return;
+  });
 
   // Toggle home menu
   $('#home').on('click', () => {
