@@ -7,12 +7,14 @@ $(() => {
 
   $('#menu div').on('click', () => {
     $('#menu').slideToggle(0);
+    $('header').slideToggle(0);
     return;
   });
 
   $('#home').on('click', () => {
     if ($('#menu').css('display') == 'none') {
       $('#menu').slideToggle(0);
+      $('header').slideToggle(0);
       return;
     }
   })
