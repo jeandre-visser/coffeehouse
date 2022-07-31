@@ -1,0 +1,25 @@
+nav {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+
+  position: fixed;
+  top: 0;
+
+  height: 10%;
+  width: 100%;
+  padding: 2% 5%;
+
+  background-color: rgb(104, 23, 23);
+  background-image: url("https://www.transparenttextures.com/patterns/dark-wood.png");
+
+  color: white;
+
+  :hover {
+    color: black;
+  }
+
+  div {
+    cursor: pointer;
+  }
+}
