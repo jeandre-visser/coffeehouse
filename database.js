@@ -115,3 +115,21 @@ const pendingOrder = function(id) {
 exports.pendingOrder = pendingOrder;
 
 
+/**
+ * Set order status to ready
+ * @param {string} id The id of the order.
+ * @return {Promise<{}>} A promise to the order.
+ */
+
+const orderReady = function(id) {
+  const queryString = `
+    UPDATE orders
+    SET order_ready = TRUE
+    WHERE id = $1;
+  `;
+
+  return pool
+  .query(queryString, [id])
+  .then(result => result.rows)
+  .catch(err => err.message)
+}
