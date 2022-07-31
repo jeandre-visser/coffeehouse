@@ -22,12 +22,13 @@ main {
     width: 100%;
     div {
       padding: 20% 10%;
-
+      cursor: pointer;
     }
     :hover {
-      background-color: red;
+      opacity: 70%;
     }
   }
+
   #cart-menu {
     display: none;
     width: 20%;
