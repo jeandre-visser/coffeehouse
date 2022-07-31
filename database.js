@@ -133,3 +133,4 @@ const orderReady = function(id) {
   .then(result => result.rows)
   .catch(err => err.message)
 }
+exports.orderReady = orderReady;
