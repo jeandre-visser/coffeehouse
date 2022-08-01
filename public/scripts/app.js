@@ -19,15 +19,13 @@ $(() => {
 // Cold and baked not working yet
 
   // // Toggle cold menu
-  // $('.cold').on('click', () => {
-  //   if ($('.cold-menu').css('display') == 'none') {
-  //     $('.menu').css('display', 'none');
-  //     $('#menus').css('display', 'none');
-  //     $('header').css('display', 'none');
-  //     $('.cold-menu').css('display', 'flex')
-  //     return;
-  //   }
-  // });
+  $('.cold').on('click', () => {
+    if ($('.menu').css('display') == 'none') {
+      $('#menus').css('display', 'none');
+      $('header').css('display', 'none');
+      return;
+    }
+  });
 
   // // Toggle baked-goods menu
   // $('.baked').on('click', () => {

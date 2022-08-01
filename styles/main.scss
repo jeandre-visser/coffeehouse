@@ -77,4 +77,30 @@ main {
     padding: 1%;
     background-color: #B68D40;
   }
+
+  .options-menu {
+    margin: 3%;
+    width: 100%;
+    div {
+      display: flex;
+      justify-content: space-evenly;
+    }
+
+    .item-summary {
+      height: 10em;
+      background-color: #b1d0fc;
+    }
+
+    .customization {
+      background-color: aquamarine;
+      height: 10em;
+    }
+    .addons {
+      flex-direction: column;
+    }
+    .size {
+      flex-direction: column;
+
+    }
+  }
 }
