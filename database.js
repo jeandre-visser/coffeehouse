@@ -85,16 +85,21 @@ const createUser = function(user) {
 };
 exports.createUser = createUser;
 
-// Create order
-const createOrder = function(userId, adminId) {
+/**
+ * Add new order to database
+ * @param {{}} order An object containing all of the order details.
+ * @return {Promise<{}>} A promise to the order.
+ */
+const createOrder = function(order) {
   const queryString = `
     INSERT INTO orders (user_id, admin_id, order_timestamp, order_pending, order_ready)
     VALUES ($1, $2, NOW()::timestamp, $3, $4)
     RETURNING *;
   `;
-  const values = [parseInt(req.session.name), true, ]
+
+  const queryParams = [order.user_id, order.admin_id, true, false]
   return pool
-  .query(queryString, [userId, adminId])
+  .query(queryString, queryParams)
   .then(result => result.rows[0])
   .catch(err => err.message)
 };
