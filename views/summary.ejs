@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <title>Coffee House</title>
+
+ 
+
+  <script type="text/javascript" src="/vendor/jquery-3.0.0.js"></script>
+  <script type="text/javascript" src="/scripts/practice.js"></script>
+</head>
+
+<nav>
+  <ol>
+    <a>Coffee House</a>
+    <a>Cold Drinks</a>
+    <a>Hot Drinks</a>
+    <a>Baked Goods</a>
+  </ol>
+</nav>
+<title>Summary Page</title>
+<main>
+  <div class="thanks">
+    Thanks user.name
+  </div>
+  <div class="items-price">
+    Items/Price/Time
+  </div>
+  <div>
+    <button onclick="returnHome()" type="submit">Return Home / Order Again</button>
+    <script>
+      function returnHome() {
+        location.href = "http://localhost:8080";
+      }
+    </script>
+  </div>
+</main>
+
+<div id="hidediv">This is a paragraph.</div>
+<button class="btn1">next</button>
+<div id="showingdiv"><p>showing div next</p></div>

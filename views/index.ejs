@@ -1,20 +1,88 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en">>
 
 <head>
-  <title>Home Page</title>
+  <title>Coffee House</title>
 
   <link rel="stylesheet" href="/vendor/normalize-4.1.1.css" type="text/css" />
   <link rel="stylesheet" href="/vendor/border-box.css" type="text/css" />
   <link rel="stylesheet" href="/styles/main.css" type="text/css" />
   <link rel="stylesheet" href="/styles/layout.css" type="text/css" />
+  <link rel="stylesheet" href="/styles/nav.css" type="text/css" />
+  <link rel="stylesheet" href="/styles/header.css" type="text/css" />
+  <link rel="stylesheet" href="/styles/footer.css" type="text/css" />
+
+
+
+  <!-- External CSS -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.2/css/all.min.css" integrity="sha512-1sCRPdkRXhBV2PBLUdRb4tMg1w2YPf37qatUFeS7zlBy7jJI8Lf4VHwWfZZfpXtYSLy85pkm9GaYVYMfw5BC1A==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Mochiy+Pop+One&display=swap" rel="stylesheet">
 
   <script type="text/javascript" src="/vendor/jquery-3.0.0.js"></script>
   <script type="text/javascript" src="/scripts/app.js"></script>
 </head>
 
 <body>
-  <h1>Have fun! 🥔</h1>
+  <nav>
+    <div id="home"><i class="fa-solid fa-mug-hot"></i> Coffee House</div>
+    <div class="hot">Hot Drinks</div>
+    <div class="cold">Cold Drinks</div>
+    <div class="baked">Baked Goods</div>
+    <div id="cart-icon">Cart <i class="fa-solid fa-cart-shopping"></i></div>
+  </nav>
+  <header>
+    <div>Come try our reasonably priced coffee</div>
+  </header>
+  <main>
+    <section id="menus">
+      <div class="hot">Hot Drinks</div>
+      <div class="cold">Cold Drinks</div>
+      <div class="baked">Baked Goods</div>
+    </section>
+    <section class="hot-menu drink-menu menu">
+      <div><img src="https://upload.wikimedia.org/wikipedia/commons/thumb/4/45/A_small_cup_of_coffee.JPG/1200px-A_small_cup_of_coffee.JPG"><span>coffee</span></div>
+      <div><img src="https://i0.wp.com/www.thecoffeecompass.com/wp-content/uploads/44B518C7-8B04-4CD8-92F4-34CD5B923989-11299-000008158528D343.jpg?fit=1776%2C1184&ssl=1"><span>Latte</span></div>
+      <div><img src="https://merriam-webster.com/assets/mw/images/article/art-wap-article-main/cappuccino-2029-e80b7c6d318c7862df2c4c8623a11f99@1x.jpg"><span>Cappuccino</span></div>
+      <div><img src="https://cdn.buttercms.com/AB7ud4YSE6nmOX0iGlgA"><span>Americano</span></div>
+      <div><img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTeIUUNTss4cG9_z36HD1p8zydMeqyaWXmqdA&usqp=CAU"><span>Espresso</span></div>
+      <div><img src="http://images.dailyhive.com/20161208103856/hot-chocolate-marshmallows.jpg"><span>Hot Chocolate</span></div>
+    </section>
+    <section class="cold-menu drink-menu menu">
+      <div><img src="https://upload.wikimedia.org/wikipedia/commons/thumb/4/45/A_small_cup_of_coffee.JPG/1200px-A_small_cup_of_coffee.JPG"><span>coffee</span></div>
+      <div><img src="https://i0.wp.com/www.thecoffeecompass.com/wp-content/uploads/44B518C7-8B04-4CD8-92F4-34CD5B923989-11299-000008158528D343.jpg?fit=1776%2C1184&ssl=1"><span>Latte</span></div>
+      <div><img src="https://merriam-webster.com/assets/mw/images/article/art-wap-article-main/cappuccino-2029-e80b7c6d318c7862df2c4c8623a11f99@1x.jpg"><span>Cappuccino</span></div>
+      <div><img src="https://cdn.buttercms.com/AB7ud4YSE6nmOX0iGlgA"><span>Americano</span></div>
+      <div><img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTeIUUNTss4cG9_z36HD1p8zydMeqyaWXmqdA&usqp=CAU"><span>Espresso</span></div>
+      <div><img src="http://images.dailyhive.com/20161208103856/hot-chocolate-marshmallows.jpg"><span>Hot Chocolate</span></div>
+    </section>
+    <section class="baked-menu menu">
+      <div><img src="https://upload.wikimedia.org/wikipedia/commons/thumb/4/45/A_small_cup_of_coffee.JPG/1200px-A_small_cup_of_coffee.JPG"><span>coffee</span></div>
+      <div><img src="https://i0.wp.com/www.thecoffeecompass.com/wp-content/uploads/44B518C7-8B04-4CD8-92F4-34CD5B923989-11299-000008158528D343.jpg?fit=1776%2C1184&ssl=1"><span>Latte</span></div>
+      <div><img src="https://merriam-webster.com/assets/mw/images/article/art-wap-article-main/cappuccino-2029-e80b7c6d318c7862df2c4c8623a11f99@1x.jpg"><span>Cappuccino</span></div>
+      <div><img src="https://cdn.buttercms.com/AB7ud4YSE6nmOX0iGlgA"><span>Americano</span></div>
+      <div><img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTeIUUNTss4cG9_z36HD1p8zydMeqyaWXmqdA&usqp=CAU"><span>Espresso</span></div>
+      <div><img src="http://images.dailyhive.com/20161208103856/hot-chocolate-marshmallows.jpg"><span>Hot Chocolate</span></div>
+    </section>
+    <section class="options-menu menu"></section>
+    <section id="cart-menu">
+      <div>Cart</div>
+      <ul>
+        <li>Coffee <button>Remove</button></li>
+        <li>Iced Coffee<button>Remove</button></li>
+        <li>Donut<button>Remove</button></li>
+      </ul>
+      <div>total $:</div>
+      <textarea input type="tel" placeholder="Phone Number"></textarea>
+      <button>Place Order</button>
+    </section>
+  </main>
+  <footer>
+    <div>Contact Us: 1-800-867-5309</div>
+    <div id="home"><i class="fa-solid fa-mug-hot"></i> Coffee House</div>
+    <div>Hours of Operation: 6am - 7am</div>
+  </footer>
 </body>
 
 </html>
