@@ -16,27 +16,29 @@ $(() => {
     }
   });
 
-  // Toggle cold menu
-  $('.cold').on('click', () => {
-    if ($('.cold-menu').css('display') == 'none') {
-      $('.menu').css('display', 'none');
-      $('#menus').css('display', 'none');
-      $('header').css('display', 'none');
-      $('.cold-menu').css('display', 'flex')
-      return;
-    }
-  });
+// Cold and baked not working yet
 
-  // Toggle baked-goods menu
-  $('.baked').on('click', () => {
-    if ($('.baked-menu').css('display') == 'none') {
-      $('.menu').css('display', 'none');
-      $('#menus').css('display', 'none');
-      $('header').css('display', 'none');
-      $('.baked-menu').css('display', 'flex')
-      return;
-    }
-  });
+  // // Toggle cold menu
+  // $('.cold').on('click', () => {
+  //   if ($('.cold-menu').css('display') == 'none') {
+  //     $('.menu').css('display', 'none');
+  //     $('#menus').css('display', 'none');
+  //     $('header').css('display', 'none');
+  //     $('.cold-menu').css('display', 'flex')
+  //     return;
+  //   }
+  // });
+
+  // // Toggle baked-goods menu
+  // $('.baked').on('click', () => {
+  //   if ($('.baked-menu').css('display') == 'none') {
+  //     $('.menu').css('display', 'none');
+  //     $('#menus').css('display', 'none');
+  //     $('header').css('display', 'none');
+  //     $('.baked-menu').css('display', 'flex')
+  //     return;
+  //   }
+  // });
 
   // Toggle home menu
   $('#home').on('click', () => {

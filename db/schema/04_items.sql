@@ -5,5 +5,6 @@ CREATE TABLE items (
   price INTEGER  NOT NULL DEFAULT 0,
   prep_time INTEGER NOT NULL DEFAULT 0,
   description TEXT,
-  photo_url VARCHAR(255) NOT NULL
+  photo_url VARCHAR(255) NOT NULL,
+  type VARCHAR(255) NOT NULL
 );
