@@ -199,3 +199,25 @@ const totalPrepTime = function(phone) {
   .catch(err => err.message)
 };
 exports.totalPrepTime = totalPrepTime;
+
+
+
+// Add items to the cart
+const addToOrderedItems = function(orderId, cart) {
+  const queryString = `
+  INSERT INTO ordered_items (order_id, item_id, size_id, quantity, price)
+  VALUES ($1, $2, $3, $4, $5)
+  RETURNING *
+  `;
+
+  let orderedItems = [];
+  cart.forEach((item) => {
+    orderedItems.push(
+      pool.query(queryString, [orderId, item.item_id, item.size_id, item.quantity, item.price])
+    )
+  })
+  return Promise.all(orderedItems)
+    .then(result => result[0].rows[0])
+    .catch(err => err.message)
+};
+exports.addToOrderedItems = addToOrderedItems;
