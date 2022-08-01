@@ -172,3 +172,28 @@ const getPendingOrder = function(phone) {
 };
 exports.getPendingOrder = getPendingOrder;
 
+
+/**
+ * Get the total prep time of the orders in progress by phone
+ * @param {string} phone The phone number of the user
+ * @return {Promise<{}>} A promise to the orders.
+ */
+
+const totalPrepTime = function(phone) {
+  const queryString = `
+  SELECT SUM(total.order_prep_time)
+  FROM (SELECT orders.id as order_id, ordered_items.quantity, items.name, items.prep_time, items.prep_time * ordered_items.quantity as order_prep_time
+  FROM orders
+  JOIN users ON orders.user_id = users.id
+  JOIN ordered_items ON ordered_items.order_id = orders.id
+  JOIN items ON items.id = ordered_items.item_id
+  WHERE orders.order_pending = TRUE AND orders.order_ready = FALSE
+  GROUP BY orders.id, ordered_items.quantity, items.prep_time, items.name) as total;
+  `;
+
+  return pool
+  .query(queryString, [phone])
+  .then(result => result.rows[0])
+  .catch(err => err.message)
+};
+exports.totalPrepTime = totalPrepTime;
