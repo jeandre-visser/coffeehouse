@@ -2,18 +2,6 @@ main {
   display: flex;
   justify-content: space-between;
 
-  .hot {
-    background-color: rgba(253, 93, 30, 0.842);
-  }
-
-  .cold {
-    background-color: #b1d0fc;
-  }
-
-  .baked {
-    background-color: rgb(255, 195, 106);
-  }
-
   #menus {
     display: flex;
     justify-content: space-evenly;
@@ -24,23 +12,27 @@ main {
 
     .hot {
       background-image: url('https://media.istockphoto.com/photos/cup-and-plate-of-coffee-with-shadow-of-sun-on-yellow-terracotta-picture-id1324997615?b=1&k=20&m=1324997615&s=170667a&w=0&h=r_XU-xxr5nx6nZdm83uXbxcUqt2doGnHXjVGnmF5Fj8=');
+      background-color: rgba(253, 93, 30, 0.842);
     }
 
     .cold {
       background-image: url('https://assets.javycoffee.com/videos/step_03.jpg');
+      background-color: #b1d0fc;
     }
 
     .baked {
       background-image: url("https://images.unsplash.com/photo-1626094309830-abbb0c99da4a?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxleHBsb3JlLWZlZWR8NHx8fGVufDB8fHx8&w=1000&q=80");
+      background-color: rgb(255, 195, 106);
     }
 
     div {
+      display: flex;
+      justify-content: space-evenly;
+
+      padding-top: 5%;
       height: 25em;
       width: 20em;
       cursor: pointer;
-      top: 10%;
-      display: flex;
-      justify-content: space-evenly;
 
       color: white;
       background-repeat: no-repeat;
