@@ -97,7 +97,7 @@ const createOrder = function(order) {
     RETURNING *;
   `;
 
-  const queryParams = [order.user_id, order.admin_id, true, false]
+  const queryParams = [parseInt(req.session.name), order.admin_id, true, false]
   return pool
   .query(queryString, queryParams)
   .then(result => result.rows[0])
