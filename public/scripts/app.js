@@ -7,22 +7,32 @@ $(() => {
 
   // Toggle hot menu
   $('.hot').on('click', () => {
-    if ($('.menu').css('display') == 'none') {
-      addItems(testDB);
-      $('.options-menu').css('display', 'none')
-      $('#menus').css('display', 'none');
-      $('header').css('display', 'none');
-      $('.menu').css('display', 'flex')
-      return;
-    }
+    addItems(testDB);
+    $('.options-menu').css('display', 'none');
+    $('#menus').css('display', 'none');
+    $('header').css('display', 'none');
+    $('.menu').css('display', 'flex')
+    return;
   });
 
-  // // Toggle drink options
-  $('.menu').on('click', () => {
-      console.log('hello')
-      clearItems();
-      $('.options-menu').css('display', 'flex')
-      return;
+  // Toggle cold menu
+  $('.cold').on('click', () => {
+    addItems(testDB);
+    // $('.options-menu').css('display', 'none');
+    $('#menus').css('display', 'none');
+    $('header').css('display', 'none');
+    $('.menu').css('display', 'flex')
+    return;
+  });
+
+  // Toggle baked menu
+  $('.baked').on('click', () => {
+    addItems(testDB);
+    $('.options-menu').css('display', 'none');
+    $('#menus').css('display', 'none');
+    $('header').css('display', 'none');
+    $('.menu').css('display', 'flex')
+    return;
   });
 
   // Toggle home menu

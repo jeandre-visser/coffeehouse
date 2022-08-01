@@ -1,8 +1,8 @@
 // Creates an item div
-const createItem = (item) => {
+const createItem = (item, itemId) => {
   if (item.type === 'baked') {
     return `
-      <div class='baked-item'>
+      <div class='baked-item' data-id='${itemId}>
         <img src="${item.photo_url}">
         <span>${item.name}</span>
       </div>
@@ -10,11 +10,20 @@ const createItem = (item) => {
   }
 
   return `
-    <div class='drink-item'>
+    <div class='drink-item' data-id='${itemId}'>
       <img src="${item.photo_url}">
       <span>${item.name}</span>
     </div>
     `
+}
+
+// Get items by category
+const getItemsByCategory = category => {
+  return pool
+    .query (`SELECT * FROM ITEMS WHERE category = $1`, [category])
+    .then(res => {
+      return res.rows;
+    })
 }
 
 // Appends item
@@ -28,13 +37,24 @@ const clearItems = () => {
 }
 
 // Clears then adds all menu items
-const addItems = (items) => {
+const addItems = (items, category) => {
   clearItems();
+
+  // Appends all items in array
   for (const itemId in items) {
     const item = items[itemId];
-    const newItem = createItem(item);
+    const newItem = createItem(item, itemId);
     addItem(newItem);
   }
+
+  // Brings up options-menu
+  $('.drink-item').on('click', (event) => {
+    console.log('event targer:', $(event.delegateTarget).data());
+    clearItems();
+    const options = optionsMenu()
+    addItem(options);
+    return;
+});
 }
 
 // Test Data
@@ -58,4 +78,3 @@ let testDB = [{
   type: 'baked',
   photo_url: "https://images.unsplash.com/photo-1626094309830-abbb0c99da4a?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxleHBsb3JlLWZlZWR8NHx8fGVufDB8fHx8&w=1000&q=80"
 }]
-
