@@ -64,16 +64,22 @@ const getOrderWithId = function(id) {
 };
 exports.getOrderWithId = getOrderWithId;
 
+
+/**
+ * Add new user to database
+ * @param {{name: string, phone: string}} user
+ * @return {Promise<{}>} A promise to the user.
+ */
 // Create user
-const createUser = function(name, phone) {
+const createUser = function(user) {
   const queryString = `
     INSERT INTO users (name, phone)
     VALUES ($1, $2)
-    RETURNING id;
+    RETURNING *;
   `;
 
   return pool
-  .query(queryString, [name, phone])
+  .query(queryString, [user.name, user.phone])
   .then(result => result.rows[0])
   .catch(err => err.message)
 };
@@ -82,11 +88,11 @@ exports.createUser = createUser;
 // Create order
 const createOrder = function(userId, adminId) {
   const queryString = `
-    INSERT INTO orders (user_id, admin_id)
-    VALUES ($1, $1)
-    RETURNING id;
+    INSERT INTO orders (user_id, admin_id, order_timestamp, order_pending, order_ready)
+    VALUES ($1, $2, NOW()::timestamp, $3, $4)
+    RETURNING *;
   `;
-
+  const values = [parseInt(req.session.name), true, ]
   return pool
   .query(queryString, [userId, adminId])
   .then(result => result.rows[0])
@@ -160,3 +166,4 @@ const getPendingOrder = function(phone) {
   .catch(err => err.message)
 };
 exports.getPendingOrder = getPendingOrder;
+
