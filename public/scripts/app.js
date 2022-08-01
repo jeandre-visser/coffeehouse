@@ -9,6 +9,7 @@ $(() => {
   $('.hot').on('click', () => {
     if ($('.menu').css('display') == 'none') {
       addItems(testDB);
+      $('.options-menu').css('display', 'none')
       $('#menus').css('display', 'none');
       $('header').css('display', 'none');
       $('.menu').css('display', 'flex')
@@ -17,28 +18,18 @@ $(() => {
   });
 
   // // Toggle drink options
-  $('.drink-item').on('click', () => {
+  $('.menu').on('click', () => {
       console.log('hello')
       clearItems();
       $('.options-menu').css('display', 'flex')
       return;
   });
 
-  // // Toggle baked-goods menu
-  // $('.baked').on('click', () => {
-  //   if ($('.baked-menu').css('display') == 'none') {
-  //     $('.menu').css('display', 'none');
-  //     $('#menus').css('display', 'none');
-  //     $('header').css('display', 'none');
-  //     $('.baked-menu').css('display', 'flex')
-  //     return;
-  //   }
-  // });
-
   // Toggle home menu
   $('#home').on('click', () => {
     if ($('#menus').css('display') == 'none') {
       $('.menu').css('display', 'none')
+      $('.options-menu').css('display', 'none')
       $('#menus').slideToggle(0);
       $('header').slideToggle(0);
       return;
