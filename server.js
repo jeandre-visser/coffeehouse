@@ -37,13 +37,13 @@ app.use(express.static("public"));
 // Note: Feel free to replace the example routes below with your own
 const usersRoutes = require("./routes/users");
 const widgetsRoutes = require("./routes/widgets");
-const summaryRoutes = require("./routes/summary-routes");
+const summaryRoutes = require("./routes/summary-routes.js");
 
 // Mount all resource routes
 // Note: Feel free to replace the example routes below with your own
 app.use("/api/users", usersRoutes(db));
 app.use("/api/widgets", widgetsRoutes(db));
-app.use("/api/summary-routes", summaryRoutes(db));
+app.use("/summary-routes", summaryRoutes(db));
 // Note: mount other resources here, using the same pattern above
 
 // Home page
@@ -60,17 +60,13 @@ app.listen(PORT, () => {
 
 // Remove everything below later
 
-// Adding Summary Page
+// Rendering Pages Routes
 app.get("/summary/:id", (req, res) => {
   res.render("summary");
 });
-//Once you click on return home GET request to main page
-//Once you click on place another GET request
 
-
-
-// Adding Admin Page, a history log of orders
 app.get("/admin", (req, res) => {
   res.render("admin");
 });
-// For admin history display the logs can kinda like tweets container
+
+
