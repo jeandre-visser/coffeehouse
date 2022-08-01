@@ -6,5 +6,5 @@ CREATE TABLE items (
   prep_time INTEGER NOT NULL DEFAULT 0,
   description TEXT,
   photo_url VARCHAR(255) NOT NULL,
-  type VARCHAR(255) NOT NULL
+  category VARCHAR(255) NOT NULL
 );
