@@ -16,15 +16,12 @@ $(() => {
     }
   });
 
-// Cold and baked not working yet
-
-  // // Toggle cold menu
-  $('.cold').on('click', () => {
-    if ($('.menu').css('display') == 'none') {
-      $('#menus').css('display', 'none');
-      $('header').css('display', 'none');
+  // // Toggle drink options
+  $('.drink-item').on('click', () => {
+      console.log('hello')
+      clearItems();
+      $('.options-menu').css('display', 'flex')
       return;
-    }
   });
 
   // // Toggle baked-goods menu
