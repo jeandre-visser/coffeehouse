@@ -115,7 +115,8 @@ const pendingOrder = function(id) {
   const queryString = `
   UPDATE orders
   SET order_pending = TRUE
-  WHERE orders.id = $1;
+  WHERE orders.id = $1
+  RETURNING *;
   `;
 
   return pool
@@ -136,7 +137,8 @@ const orderReady = function(id) {
   const queryString = `
     UPDATE orders
     SET order_ready = TRUE
-    WHERE id = $1;
+    WHERE id = $1
+    RETURNING *;
   `;
 
   return pool
