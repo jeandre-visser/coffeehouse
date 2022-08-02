@@ -75,7 +75,15 @@
       </ul>
       <div>total $:</div>
       <textarea input type="tel" placeholder="Phone Number"></textarea>
-      <button>Place Order</button>
+      <button onclick="goToSummary()" type="submit">Place Order
+        <script>
+          function goToSummary() {
+            location.href = "http://localhost:8080/summary/:id";
+          }
+        </script>
+
+      </button>
+
     </section>
   </main>
   <footer>
