@@ -8,7 +8,9 @@ const pool = new Pool(dbParams);
  * @return {Promise<{}>} A promise to the order.
  */
 
-const getAllOrders = function(limit = 6) {
+
+const getAllOrders = function() {
+  const limit = 6;
   const queryString = `
     SELECT orders.id,
       order_timestamp,
@@ -16,7 +18,7 @@ const getAllOrders = function(limit = 6) {
       users.phone,
       order_pending,
       order_ready,
-      json.agg(json_build_object('item_name', items.name, 'quantity', ordered_items.quantity)) as coffee_items
+      json_agg(json_build_object('item_name', items.name, 'quantity', ordered_items.quantity)) as coffee_items
     FROM orders
     JOIN users ON users.id = user_id
     JOIN ordered_items ON order_id = orders.id
@@ -32,6 +34,7 @@ const getAllOrders = function(limit = 6) {
 };
 
 exports.getAllOrders = getAllOrders;
+
 
 /**
  * Get one order from db with it's id
