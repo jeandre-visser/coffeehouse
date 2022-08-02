@@ -52,10 +52,10 @@ main {
     align-items: center;
     flex-wrap: wrap;
 
-    margin: 10% 0%;
     width: 100%;
 
     div {
+      margin: 20px 0;
       display: flex;
       justify-content: center;
       align-items: center;
@@ -65,46 +65,54 @@ main {
 
     img {
       border-radius: 50%;
-      max-width: 65%;
-      height: auto;
+      width:  300px;
+      height: 300px;
     }
   }
 
   #cart-menu {
     display: none;
     width: 20%;
-    border-left: 5px solid rgb(104, 23, 23);
-    padding: 1%;
-    background-color: #B68D40;
+    background-color: white;
+
   }
 
   .options-menu {
-    margin: 3%;
     width: 100%;
+    border:3px #b1d0fc;
 
-    div {
-      display: flex;
-      justify-content: space-evenly;
-      width: 100%;
-
+    h1 {
+      margin: 0.5em;
     }
 
+    div {
+      width: 100%;
+    }
+
+    img {
+      height: 90%;
+      width: auto;
+    }
 
     .item-summary {
       height: 10em;
       background-color: #b1d0fc;
     }
 
-    .customization {
-      background-color: aquamarine;
-      height: 10em;
-    }
-    .addons {
+    .summary {
       flex-direction: column;
+      width: auto;
     }
-    .size {
+    .order {
       flex-direction: column;
 
+      div {
+        margin: 5px;
+      }
+    }
+
+    input {
+      width: 3em;
     }
   }
 }

@@ -1,16 +1,22 @@
-const optionsMenu = (itemId) => {
+const optionsMenu = (items, itemId) => {
   return ` <section class="options-menu">
   <div class="item-summary">
-    <img src = {itemId.photo_url}>
-    <div>${itemId}</div>
-    <div>{itemId.descrition}</div>
+    <img src='${items[itemId].photo_url}'>
+    <div class='summary'>
+      <h1>${items[itemId].name}</h1>
+      <div>${items[itemId].description}</div>
+      <div>$${items[itemId].price}</div>
+    </div>
   </div>
-
-  <div class="order">
-    <label for="quantity">Quantity</label>
-    <input type="number" name="quantity">
-    <button>Add to Order</button>
-  </div>
+  <form class="order">
+    <div>
+      <label for="quantity">Quantity</label>
+      <input type="number" name="quantity" min="1" max="99">
+    </div>
+    <div>
+      <button type="submit">Add to Order: ${items[itemId].price}</button>
+    </div>
+  </form>
 </section>
 `
 }
