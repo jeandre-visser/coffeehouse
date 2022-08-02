@@ -2,28 +2,43 @@ main {
   display: flex;
   justify-content: space-between;
 
-  .hot {
-    background-color: rgba(253, 93, 30, 0.842);
-  }
-
-  .cold {
-    background-color: #b1d0fc;
-  }
-
-  .baked {
-    background-color: rgb(255, 195, 106);
-  }
-
   #menus {
     display: flex;
     justify-content: space-evenly;
     align-items: center;
     padding: 10% 7%;
     width: 100%;
+    height: 100%;
+
+    .hot {
+      background-image: url('https://media.istockphoto.com/photos/cup-and-plate-of-coffee-with-shadow-of-sun-on-yellow-terracotta-picture-id1324997615?b=1&k=20&m=1324997615&s=170667a&w=0&h=r_XU-xxr5nx6nZdm83uXbxcUqt2doGnHXjVGnmF5Fj8=');
+      background-color: rgba(253, 93, 30, 0.842);
+    }
+
+    .cold {
+      background-image: url('https://assets.javycoffee.com/videos/step_03.jpg');
+      background-color: #b1d0fc;
+    }
+
+    .baked {
+      background-image: url("https://images.unsplash.com/photo-1626094309830-abbb0c99da4a?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxleHBsb3JlLWZlZWR8NHx8fGVufDB8fHx8&w=1000&q=80");
+      background-color: rgb(255, 195, 106);
+    }
 
     div {
-      padding: 20% 10%;
+      display: flex;
+      justify-content: space-evenly;
+
+      padding-top: 5%;
+      height: 25em;
+      width: 20em;
       cursor: pointer;
+
+      color: white;
+      background-repeat: no-repeat;
+      background-position: center;
+      border-radius: 40%;
+      background-size: cover;
     }
 
     :hover {
@@ -37,10 +52,10 @@ main {
     align-items: center;
     flex-wrap: wrap;
 
-    margin: 10% 0%;
     width: 100%;
 
     div {
+      margin: 20px 0;
       display: flex;
       justify-content: center;
       align-items: center;
@@ -50,16 +65,54 @@ main {
 
     img {
       border-radius: 50%;
-      max-width: 65%;
-      height: auto;
+      width:  300px;
+      height: 300px;
     }
   }
 
   #cart-menu {
     display: none;
     width: 20%;
-    border-left: 5px solid rgb(104, 23, 23);
-    padding: 1%;
-    background-color: #B68D40;
+    background-color: white;
+
+  }
+
+  .options-menu {
+    width: 100%;
+    border:3px #b1d0fc;
+
+    h1 {
+      margin: 0.5em;
+    }
+
+    div {
+      width: 100%;
+    }
+
+    img {
+      height: 90%;
+      width: auto;
+    }
+
+    .item-summary {
+      height: 10em;
+      background-color: #b1d0fc;
+    }
+
+    .summary {
+      flex-direction: column;
+      width: auto;
+    }
+    .order {
+      flex-direction: column;
+
+      div {
+        margin: 5px;
+      }
+    }
+
+    input {
+      width: 3em;
+    }
   }
 }

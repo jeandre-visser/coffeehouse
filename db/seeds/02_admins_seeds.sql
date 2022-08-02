@@ -1,1 +1,3 @@
-INSERT INTO admins (name, phone) VALUES ('CoffeeHouse', '6938401087');
+INSERT INTO admins (name, phone)
+VALUES ('coffeehouse', '6398401087');
+
