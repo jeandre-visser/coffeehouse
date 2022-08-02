@@ -1,6 +1,6 @@
 // Creates an item div
 const createItem = (item, itemId) => {
-  if (item.type === 'baked') {
+  // if (item.type === 'baked') {
   //   return `
   //     <div class='baked-item' data-id='${itemId}>
   //       <img src="${item.photo_url}">

@@ -3,15 +3,16 @@ nav {
   justify-content: space-between;
   align-items: center;
 
+  overflow: hidden;
   position: fixed;
   top: 0;
 
-  height: 10%;
+  height: 30px;
   width: 100%;
   padding: 2% 5%;
 
-  background-color: rgb(104, 23, 23);
-  background-image: url("https://www.transparenttextures.com/patterns/dark-wood.png");
+  background-color:#37d9fd;
+  background-image: url("https://www.transparenttextures.com/patterns/dimension.png");
 
   color: white;
 
