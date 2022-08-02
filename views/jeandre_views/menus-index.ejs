@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+
+  <body class="menus-index-body">
+    <nav>
+      <div id="home"><i class="fa-solid fa-mug-hot"></i> Coffee House</div>
+      <div class="hot">Hot Drinks</div>
+      <div class="cold">Cold Drinks</div>
+      <div class="baked">Baked Goods</div>
+      <div id="cart-icon">Cart <i class="fa-solid fa-cart-shopping"></i></div>
+    </nav>
+    <!-- Menu index -->
+    <h1>Menu</h1>
+    <section class="menus-index-container">
+    <% for (let item of itemArr) {%>
+    <a href="/menus/<%= item.id %>" class="menus-index-thumbnail">
+      <img class="menus-index-picture" src="<%= item.photo_url %>">
+      <h4><%= item.name.toUpperCase() %></h4>
+      <h4><%= item.price %></h4>
+      <% } %>
+    </a>
+    </section>
+  </body>
+</html>

@@ -14,9 +14,9 @@ const getAllOrders = function(limit = 6) {
       order_timestamp,
       users.name,
       users.phone,
-      order_pending,
+      order_confirmed,
       order_ready,
-      json.agg(json_build_object('item_name', items.name, 'quantity', ordered_items.quantity)) as coffee_items
+      json.agg(json_build_object('item_name', items.name, 'quantity', quantity)) as coffee_items
     FROM orders
     JOIN users ON users.id = user_id
     JOIN ordered_items ON order_id = orders.id
@@ -75,7 +75,7 @@ const createUser = function(user) {
   const queryString = `
     INSERT INTO users (name, phone)
     VALUES ($1, $2)
-    RETURNING *;
+    RETURNING id;
   `;
 
   return pool
@@ -90,31 +90,29 @@ exports.createUser = createUser;
  * @param {{}} order An object containing all of the order details.
  * @return {Promise<{}>} A promise to the order.
  */
-const createOrder = function(order) {
+const createOrder = function(user_id, admin_id) {
   const queryString = `
-    INSERT INTO orders (user_id, admin_id, order_timestamp, order_pending, order_ready)
-    VALUES ($1, $2, NOW()::timestamp, $3, $4)
-    RETURNING *;
+    INSERT INTO orders (user_id, admin_id)
+    VALUES ($1, $2)
+    RETURNING id;
   `;
-
-  const queryParams = [parseInt(req.session.name), order.admin_id, true, false]
   return pool
-  .query(queryString, queryParams)
+  .query(queryString, [user_id, admin_id])
   .then(result => result.rows[0])
   .catch(err => err.message)
 };
 exports.createOrder = createOrder;
 
 /**
- * Set order status to pending
+ * Set order status to confirmed
  * @param {string} id The id of the order.
  * @return {Promise<{}>} A promise to the order.
  */
 
-const pendingOrder = function(id) {
+const confirmedOrder = function(id) {
   const queryString = `
   UPDATE orders
-  SET order_pending = TRUE
+  SET order_confirmed = TRUE
   WHERE orders.id = $1
   RETURNING *;
   `;
@@ -124,7 +122,7 @@ const pendingOrder = function(id) {
   .then(result => result.rows)
   .catch(err => err.message)
 };
-exports.pendingOrder = pendingOrder;
+exports.confirmedOrder = confirmedOrder;
 
 
 /**
@@ -149,12 +147,12 @@ const orderReady = function(id) {
 exports.orderReady = orderReady;
 
 /**
- * Get all pending orders from database for one user by phone
+ * Get all confirmed orders from database for one user by phone
  * @param {string} phone The phone number of the order.
  * @return {Promise<{}>} A promise to the order.
  */
 
-const getPendingOrder = function(phone) {
+const getConfirmedOrder = function(phone) {
   const queryString = `
   SELECT orders.id as order_id, users.phone
   FROM orders
@@ -162,7 +160,7 @@ const getPendingOrder = function(phone) {
   JOIN ordered_items ON ordered_items.order_id = orders.id
   JOIN cup_sizes ON cup_sizes.id = ordered_items.size_id
   JOIN items ON items.id = ordered_items.item_id
-  WHERE orders.order_pending = TRUE AND orders.order_ready = FALSE AND users.phone = $1
+  WHERE orders.order_confirmed = TRUE AND orders.order_ready = FALSE AND users.phone = $1
   GROUP BY users.phone, orders.id
   ORDER BY orders.id DESC;
   `;
@@ -172,48 +170,52 @@ const getPendingOrder = function(phone) {
   .then(result => result.rows[0])
   .catch(err => err.message)
 };
-exports.getPendingOrder = getPendingOrder;
+exports.getConfirmedOrder = getConfirmedOrder;
 
-
+// REMOVED PREP TIME FROM TABLE
 /**
  * Get the total prep time of the orders in progress by phone
  * @param {string} phone The phone number of the user
  * @return {Promise<{}>} A promise to the orders.
  */
 
-const totalPrepTime = function(phone) {
-  const queryString = `
-  SELECT SUM(total.order_prep_time)
-  FROM (SELECT orders.id as order_id, ordered_items.quantity, items.name, items.prep_time, items.prep_time * ordered_items.quantity as order_prep_time
-  FROM orders
-  JOIN users ON orders.user_id = users.id
-  JOIN ordered_items ON ordered_items.order_id = orders.id
-  JOIN items ON items.id = ordered_items.item_id
-  WHERE orders.order_pending = TRUE AND orders.order_ready = FALSE
-  GROUP BY orders.id, ordered_items.quantity, items.prep_time, items.name) as total;
-  `;
+// const totalPrepTime = function(phone) {
+//   const queryString = `
+//   SELECT SUM(total.order_prep_time)
+//   FROM (SELECT orders.id as order_id, ordered_items.quantity, items.name, items.prep_time, items.prep_time * ordered_items.quantity as order_prep_time
+//   FROM orders
+//   JOIN users ON orders.user_id = users.id
+//   JOIN ordered_items ON ordered_items.order_id = orders.id
+//   JOIN items ON items.id = ordered_items.item_id
+//   WHERE orders.order_confirmed = TRUE AND orders.order_ready = FALSE
+//   GROUP BY orders.id, ordered_items.quantity, items.prep_time, items.name) as total;
+//   `;
 
-  return pool
-  .query(queryString, [phone])
-  .then(result => result.rows[0])
-  .catch(err => err.message)
-};
-exports.totalPrepTime = totalPrepTime;
+//   return pool
+//   .query(queryString, [phone])
+//   .then(result => result.rows[0])
+//   .catch(err => err.message)
+// };
+// exports.totalPrepTime = totalPrepTime;
 
 
 
-// Add items to the cart
+/**
+ * Add items to cart
+ * @param {{}} orderId An object containing the items in the cart with the order id
+ * @return {Promise<{}>} A promise to the orders.
+ */
 const addToOrderedItems = function(orderId, cart) {
   const queryString = `
-  INSERT INTO ordered_items (order_id, item_id, size_id, quantity, price)
-  VALUES ($1, $2, $3, $4, $5)
-  RETURNING *
+  INSERT INTO ordered_items (order_id, item_id, quantity)
+  VALUES ($1, $2, $3)
+  RETURNING order_id;
   `;
 
   let orderedItems = [];
   cart.forEach((item) => {
     orderedItems.push(
-      pool.query(queryString, [orderId, item.item_id, item.size_id, item.quantity, item.price])
+      pool.query(queryString, [item.item_id, orderId, item.quantity])
     )
   })
   return Promise.all(orderedItems)
