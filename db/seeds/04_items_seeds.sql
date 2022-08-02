@@ -1,5 +1,5 @@
 INSERT INTO items (name, price, description, photo_url, category)
-Values ('Only Black Coffee', 99.99, 'A smooth, well-rounded blend of Latin American beans with subtly rich flavours of chocolate and toasted nuts, it is served fresh every day at your local Coffee House', 'https://cdn.pixabay.com/photo/2017/09/04/18/39/coffee-2714970_1280.jpg', 'hot'),
+VALUES ('Only Black Coffee', 99.99, 'A smooth, well-rounded blend of Latin American beans with subtly rich flavours of chocolate and toasted nuts, it is served fresh every day at your local Coffee House', 'https://cdn.pixabay.com/photo/2017/09/04/18/39/coffee-2714970_1280.jpg', 'hot'),
 ('Americano', 299.99, 'Espresso shots topped with hot water create a light layer of crema culminating in this wonderfully rich cup with depth and nuance.', 'https://cdn.pixabay.com/photo/2016/11/29/12/45/beverage-1869598_1280.jpg', 'hot'),
 ('Latte', 399.99, 'Our dark, rich espresso balanced with steamed milk and a light layer of foam. A perfect milk-forward warm-up.', 'https://cdn.pixabay.com/photo/2017/06/22/15/21/latte-art-2431160_1280.jpg', 'hot'),
 ('Cappuccino', 399.99, 'Dark, rich espresso lies in wait under a smoothed and stretched layer of thick milk foam. An alchemy of barista artistry and craft.', 'https://cdn.pixabay.com/photo/2016/11/29/02/10/caffeine-1866758_1280.jpg', 'hot'),
