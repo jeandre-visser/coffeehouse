@@ -1,6 +1,6 @@
 // Creates an item div
 const createItem = (item, itemId) => {
-  if (item.type === 'baked') {
+  // if (item.type === 'baked') {
   //   return `
   //     <div class='baked-item' data-id='${itemId}>
   //       <img src="${item.photo_url}">
@@ -49,9 +49,9 @@ const addItems = (items, category) => {
 
   // Brings up options-menu
   $('.drink-item').on('click', (event) => {
-    console.log('event targer:', $(event.delegateTarget).data());
+    let id = $(event.delegateTarget).data().id;
     clearItems();
-    const options = optionsMenu()
+    const options = optionsMenu(items, id)
     addItem(options);
     return;
 });
@@ -59,22 +59,30 @@ const addItems = (items, category) => {
 
 // Test Data
 let testDB = [{
-  name: 'coffee',
+  name: 'Coffee',
   type: 'drink',
+  description: 'A hot cup of bean water',
+  price: 100,
   photo_url: "https://upload.wikimedia.org/wikipedia/commons/thumb/4/45/A_small_cup_of_coffee.JPG/1200px-A_small_cup_of_coffee.JPG",
 },
 {
-  name: 'espresso',
+  name: 'Espresso',
   type: 'drink',
+  description: 'A hot cup of strong bean water',
+  price: 200,
   photo_url: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTeIUUNTss4cG9_z36HD1p8zydMeqyaWXmqdA&usqp=CAU"
 },
 {
-  name: 'donut',
+  name: 'Donut',
   type: 'baked',
+  description: 'Fried sugar dough disc',
+  price: 300,
   photo_url: "https://images.unsplash.com/photo-1626094309830-abbb0c99da4a?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxleHBsb3JlLWZlZWR8NHx8fGVufDB8fHx8&w=1000&q=80"
 },
 {
-  name: 'donut',
+  name: 'Croissant',
   type: 'baked',
-  photo_url: "https://images.unsplash.com/photo-1626094309830-abbb0c99da4a?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxleHBsb3JlLWZlZWR8NHx8fGVufDB8fHx8&w=1000&q=80"
+  description: 'Baked butter dough moon',
+  price: 500,
+  photo_url: "https://www.corman.pro/uploads/cache/400x400/uploads/recip/recipe/2283/dsc4113.png"
 }]
