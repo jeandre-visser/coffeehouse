@@ -3,5 +3,5 @@ CREATE TABLE ordered_items (
   id SERIAL PRIMARY KEY NOT NULL,
   order_id INTEGER REFERENCES orders(id) ON DELETE CASCADE,
   item_id INTEGER REFERENCES items(id) ON DELETE CASCADE,
-  quantity SMALLINT NOT NULL
+  quantity SMALLINT
 );
