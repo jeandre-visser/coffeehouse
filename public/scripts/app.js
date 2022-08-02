@@ -1,3 +1,4 @@
+
 $(() => {
   // Toggle home menu
   $('#home').on('click', () => {
@@ -9,31 +10,38 @@ $(() => {
     }
   })
 
-  // Toggle hot menu
   $('.hot').on('click', () => {
-    addItems(testDB);
+    $.ajax({
+      method: 'GET',
+      url: '/api/menus/',
+      success: (responseJSON) => {
+        console.log(responseJSON.items)
+        addItems(responseJSON.items);
+      }
+    })
+    // addItems(getItemsByCategory('hot'));
     $('.options-menu').css('display', 'none');
     $('#menus').css('display', 'none');
-    $('.menu').css('display', 'flex')
+    $('.menu').css('display', 'flex');
     return;
   });
 
-  // Toggle cold menu
-  $('.cold').on('click', () => {
-    addItems(testDB);
-    $('#menus').css('display', 'none');
-    $('.menu').css('display', 'flex')
-    return;
-  });
+  // // Toggle cold menu
+  // $('.cold').on('click', () => {
+  //   addItems(getItemsByCategory('cold'));
+  //   $('#menus').css('display', 'none');
+  //   $('.menu').css('display', 'flex')
+  //   return;
+  // });
 
-  // Toggle baked menu
-  $('.baked').on('click', () => {
-    addItems(testDB);
-    $('.options-menu').css('display', 'none');
-    $('#menus').css('display', 'none');
-    $('.menu').css('display', 'flex')
-    return;
-  });
+  // // Toggle baked menu
+  // $('.baked').on('click', () => {
+  //   addItems(getItemsByCategory('baked'));
+  //   $('.options-menu').css('display', 'none');
+  //   $('#menus').css('display', 'none');
+  //   $('.menu').css('display', 'flex')
+  //   return;
+  // });
 
   // Toggle cart
   $('#cart-icon').on('click', () => {
