@@ -18,13 +18,13 @@ const createItem = (item, itemId) => {
 }
 
 // Get items by category
-const getItemsByCategory = category => {
-  return pool
-    .query (`SELECT * FROM items WHERE category = $1`, [category])
-    .then(res => {
-      return res.rows;
-    })
-}
+// const getItemsByCategory = category => {
+//   return pool
+//     .query (`SELECT * FROM items WHERE category = $1`, [category])
+//     .then(res => {
+//       return res.rows;
+//     })
+// }
 
 // Appends item
 const addItem = item => {
@@ -56,6 +56,16 @@ const addItems = (items, category) => {
     return;
 });
 }
+
+// const loadItems = () => {
+//   $.ajax({
+//     method: 'GET',
+//     url: '/items',
+//     success: (responseJSON) => {
+//       addItems(responseJSON);
+//     }
+//   });
+// }
 
 // Test Data
 let testDB = [{

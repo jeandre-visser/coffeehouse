@@ -11,8 +11,14 @@ $(() => {
 
   // Toggle hot menu
   $('.hot').on('click', () => {
-    addItems(testDB);
-    $('.options-menu').css('display', 'none');
+    $.ajax({
+      method: 'GET',
+      url: '/menus/items/',
+      success: (responseJSON) => {
+        console.log(responseJSON);
+        addItems(responseJSON)
+      }
+    });
     $('#menus').css('display', 'none');
     $('.menu').css('display', 'flex')
     return;
@@ -20,7 +26,7 @@ $(() => {
 
   // Toggle cold menu
   $('.cold').on('click', () => {
-    addItems(testDB);
+    addItems(getItemsByCategory('cold'));
     $('#menus').css('display', 'none');
     $('.menu').css('display', 'flex')
     return;
@@ -29,7 +35,6 @@ $(() => {
   // Toggle baked menu
   $('.baked').on('click', () => {
     addItems(testDB);
-    $('.options-menu').css('display', 'none');
     $('#menus').css('display', 'none');
     $('.menu').css('display', 'flex')
     return;
