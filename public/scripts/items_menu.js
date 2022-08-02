@@ -1,13 +1,13 @@
 // Creates an item div
 const createItem = (item, itemId) => {
   if (item.type === 'baked') {
-    return `
-      <div class='baked-item' data-id='${itemId}>
-        <img src="${item.photo_url}">
-        <span>${item.name}</span>
-      </div>
-      `
-  }
+  //   return `
+  //     <div class='baked-item' data-id='${itemId}>
+  //       <img src="${item.photo_url}">
+  //       <span>${item.name}</span>
+  //     </div>
+  //     `
+  // }
 
   return `
     <div class='drink-item' data-id='${itemId}'>
@@ -20,7 +20,7 @@ const createItem = (item, itemId) => {
 // Get items by category
 const getItemsByCategory = category => {
   return pool
-    .query (`SELECT * FROM ITEMS WHERE category = $1`, [category])
+    .query (`SELECT * FROM items WHERE category = $1`, [category])
     .then(res => {
       return res.rows;
     })

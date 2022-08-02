@@ -18,7 +18,6 @@ $(() => {
   // Toggle cold menu
   $('.cold').on('click', () => {
     addItems(testDB);
-    // $('.options-menu').css('display', 'none');
     $('#menus').css('display', 'none');
     $('header').css('display', 'none');
     $('.menu').css('display', 'flex')
