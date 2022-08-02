@@ -45,7 +45,7 @@ const menuRoutes = require("./routes/menu-routes.js");
 app.use("/api/users", usersRoutes(db));
 app.use("/api/widgets", widgetsRoutes(db));
 app.use("/summary", summaryRoutes(db));
-app.use("/menu", menuRoutes(db));
+app.use("/menus", menuRoutes(db));
 // Note: mount other resources here, using the same pattern above
 
 // Home page
