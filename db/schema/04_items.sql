@@ -5,4 +5,5 @@ CREATE TABLE items (
   price MONEY NOT NULL,
   description TEXT,
   photo_url VARCHAR(255) NOT NULL,
+  category VARCHAR(32) NOT NULL
 );
