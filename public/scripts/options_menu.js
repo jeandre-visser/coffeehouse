@@ -8,7 +8,7 @@ const optionsMenu = (items, itemId) => {
       <div>$${items[itemId].price}</div>
     </div>
   </div>
-  <form class="order">
+  <form class="order" method="post" action="/cart/">
     <div>
       <label for="quantity">Quantity</label>
       <input type="number" name="quantity" min="1" max="99">
