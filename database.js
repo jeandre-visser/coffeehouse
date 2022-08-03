@@ -7,6 +7,7 @@ const pool = new Pool(dbParams);
  * @param {Number} limit The number of results to return.
  * @return {Promise<{}>} A promise to the order.
  */
+
 const getAllOrders = function(limit = 6) {
   const queryString = `
     SELECT orders.id,
@@ -233,12 +234,6 @@ const getItemsByCategory = category => {
 }
 
 exports.getItemsByCategory = getItemsByCategory;
-    .query (`SELECT * FROM items WHERE category = $1`, [category])
-    .then(res => {
-      return res.rows;
-    })
-
-
 
 console.log(getItemsByCategory('hot')
   .then(items => {

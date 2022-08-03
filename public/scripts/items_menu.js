@@ -21,8 +21,11 @@ const createItem = (item) => {
 }
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 
 
+=======
+>>>>>>> 0b49830841d34ae5ae95dd757e53ac5c4480333b
 =======
 >>>>>>> 0b49830841d34ae5ae95dd757e53ac5c4480333b
 // Appends item
@@ -57,6 +60,7 @@ const addItems = (items) => {
 }
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 // Test Data
 // let testDB = [{
 //   name: 'Coffee',
@@ -87,6 +91,8 @@ const addItems = (items) => {
 //   photo_url: "https://www.corman.pro/uploads/cache/400x400/uploads/recip/recipe/2283/dsc4113.png"
 // }]
 =======
+=======
+>>>>>>> 0b49830841d34ae5ae95dd757e53ac5c4480333b
 
 // const loadItems = () => {
 //   $.ajax({
@@ -97,4 +103,7 @@ const addItems = (items) => {
 //     }
 //   });
 // }
+<<<<<<< HEAD
+>>>>>>> 0b49830841d34ae5ae95dd757e53ac5c4480333b
+=======
 >>>>>>> 0b49830841d34ae5ae95dd757e53ac5c4480333b

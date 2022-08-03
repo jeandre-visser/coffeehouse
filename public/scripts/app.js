@@ -14,6 +14,7 @@ $(() => {
       method: 'GET',
       url: '/category/hot',
 <<<<<<< HEAD
+<<<<<<< HEAD
       success: (responseJSON) => {
         console.log(responseJSON.items)
         addItems(responseJSON.items);
@@ -31,13 +32,12 @@ $(() => {
     $.ajax({
       method: 'GET',
       url: '/category/cold',
+=======
+>>>>>>> 0b49830841d34ae5ae95dd757e53ac5c4480333b
       success: (responseJSON) => {
-        console.log(responseJSON.items)
         addItems(responseJSON.items);
       }
     })
-    // addItems(getItemsByCategory('hot'));
-    $('.options-menu').css('display', 'none');
     $('#menus').css('display', 'none');
     $('.menu').css('display', 'flex');
     return;
@@ -94,6 +94,7 @@ $(() => {
   });
 
 <<<<<<< HEAD
+<<<<<<< HEAD
   $('.order').on('submit', function(event){
     event.preventDefault();
     console.log('hello')
@@ -105,6 +106,9 @@ $(() => {
   })
 =======
 
+=======
+
+>>>>>>> 0b49830841d34ae5ae95dd757e53ac5c4480333b
   // $("#add-to-order").click(function() {
     // // Updates Cart Input Value
     // const foodId = $(this).val();
@@ -136,5 +140,8 @@ $(() => {
 //     //   }
 //     // })
 //   })
+<<<<<<< HEAD
+>>>>>>> 0b49830841d34ae5ae95dd757e53ac5c4480333b
+=======
 >>>>>>> 0b49830841d34ae5ae95dd757e53ac5c4480333b
 })

@@ -54,7 +54,10 @@ app.use("/category/", itemRoutes(db));
 app.use("/cart/", cartRoutes(db));
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 
+=======
+>>>>>>> 0b49830841d34ae5ae95dd757e53ac5c4480333b
 =======
 >>>>>>> 0b49830841d34ae5ae95dd757e53ac5c4480333b
 // Note: mount other resources here, using the same pattern above
