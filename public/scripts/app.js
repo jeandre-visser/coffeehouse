@@ -13,9 +13,9 @@ $(() => {
   $('.hot').on('click', () => {
     $.ajax({
       method: 'GET',
-      url: '/api/menus/',
+      url: '/category/hot',
       success: (responseJSON) => {
-        console.log(responseJSON.items)
+        console.log(responseJSON)
         addItems(responseJSON.items);
       }
     })
@@ -27,21 +27,35 @@ $(() => {
   });
 
   // // Toggle cold menu
-  // $('.cold').on('click', () => {
-  //   addItems(getItemsByCategory('cold'));
-  //   $('#menus').css('display', 'none');
-  //   $('.menu').css('display', 'flex')
-  //   return;
-  // });
+  $('.cold').on('click', () => {
+    $.ajax({
+      method: 'GET',
+      url: '/category/cold',
+      success: (responseJSON) => {
+        console.log(responseJSON.items)
+        addItems(responseJSON.items);
+      }
+    })
+    $('#menus').css('display', 'none');
+    $('.menu').css('display', 'flex')
+    return;
+  });
 
-  // // Toggle baked menu
-  // $('.baked').on('click', () => {
-  //   addItems(getItemsByCategory('baked'));
-  //   $('.options-menu').css('display', 'none');
-  //   $('#menus').css('display', 'none');
-  //   $('.menu').css('display', 'flex')
-  //   return;
-  // });
+  // Toggle baked menu
+  $('.baked').on('click', () => {
+    $.ajax({
+      method: 'GET',
+      url: '/category/baked',
+      success: (responseJSON) => {
+        console.log(responseJSON.items)
+        addItems(responseJSON.items);
+      }
+    })
+    $('.options-menu').css('display', 'none');
+    $('#menus').css('display', 'none');
+    $('.menu').css('display', 'flex')
+    return;
+  });
 
   // Toggle cart
   $('#cart-icon').on('click', () => {

@@ -8,9 +8,7 @@ const pool = new Pool(dbParams);
  * @return {Promise<{}>} A promise to the order.
  */
 
-
-const getAllOrders = function() {
-  const limit = 6;
+const getAllOrders = function(limit = 6) {
   const queryString = `
     SELECT orders.id,
       order_timestamp,
@@ -18,7 +16,7 @@ const getAllOrders = function() {
       users.phone,
       order_confirmed,
       order_ready,
-      json_agg(json_build_object('item_name', items.name, 'quantity', ordered_items.quantity)) as coffee_items
+      json.agg(json_build_object('item_name', items.name, 'quantity', quantity)) as coffee_items
     FROM orders
     JOIN users ON users.id = user_id
     JOIN ordered_items ON order_id = orders.id
@@ -34,7 +32,6 @@ const getAllOrders = function() {
 };
 
 exports.getAllOrders = getAllOrders;
-
 
 /**
  * Get one order from db with it's id
@@ -226,3 +223,24 @@ const addToOrderedItems = function(orderId, cart) {
     .catch(err => err.message)
 };
 exports.addToOrderedItems = addToOrderedItems;
+
+// Get items by category
+const getItemsByCategory = category => {
+  return pool
+    .query (`SELECT * FROM items WHERE category = $1`, [category])
+    .then(res => {
+      return res.rows;
+    })
+
+}
+
+console.log(getItemsByCategory('hot')
+  .then(items => {
+    console.log(items)
+    return items
+  })
+  .finally(() => pool.end())
+);
+
+exports.getItemsByCategory = getItemsByCategory
+
