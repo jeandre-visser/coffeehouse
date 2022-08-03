@@ -14,6 +14,7 @@ const dbParams = require("./lib/db.js");
 const db = new Pool(dbParams);
 db.connect();
 
+
 // Load the logger first so all (static) HTTP requests are logged to STDOUT
 // 'dev' = Concise output colored by response status for development use.
 //         The :status token will be colored red for server error codes, yellow for client error codes, cyan for redirection codes, and uncolored for all other codes.
@@ -39,14 +40,25 @@ const usersRoutes = require("./routes/users");
 const widgetsRoutes = require("./routes/widgets");
 const summaryRoutes = require("./routes/summary-routes.js");
 const menusRoutes = require("./routes/menus.js");
+<<<<<<< HEAD
 
+=======
+const itemRoutes = require("./routes/item-pages.js");
+>>>>>>> master
 
 // Mount all resource routes
 // Note: Feel free to replace the example routes below with your own
 app.use("/api/users", usersRoutes(db));
 app.use("/api/widgets", widgetsRoutes(db));
+<<<<<<< HEAD
 app.use("/summary-routes", summaryRoutes(db));
 // app.use("/menus", menusRoutes(db));
+=======
+app.use("/summary", summaryRoutes(db));
+app.use("/menus", menusRoutes(db));
+app.use("/category/", itemRoutes(db));
+
+>>>>>>> master
 // Note: mount other resources here, using the same pattern above
 
 // Home page
@@ -60,16 +72,3 @@ app.get("/", (req, res) => {
 app.listen(PORT, () => {
   console.log(`Example app listening on port ${PORT}`);
 });
-
-// Remove everything below later
-
-// Rendering Pages Routes
-app.get("/summary/:id", (req, res) => {
-  res.render("summary");
-});
-
-app.get("/admin", (req, res) => {
-  res.render("admin");
-});
-
-
