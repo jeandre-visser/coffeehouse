@@ -9,8 +9,7 @@ const pool = new Pool(dbParams);
  */
 
 
-const getAllOrders = function() {
-  const limit = 6;
+const getAllOrders = function(limit = 6) {
   const queryString = `
     SELECT orders.id,
       order_timestamp,
@@ -226,3 +225,14 @@ const addToOrderedItems = function(orderId, cart) {
     .catch(err => err.message)
 };
 exports.addToOrderedItems = addToOrderedItems;
+
+// Get items by category
+const getItemsByCategory = category => {
+  return pool
+    .query (`SELECT * FROM items WHERE category = $1`, req.params.category)
+    .then(res => {
+      return res.rows;
+    })
+}
+
+exports.getItemsByCategory = getItemsByCategory;

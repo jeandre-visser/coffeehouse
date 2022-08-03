@@ -10,10 +10,45 @@ $(() => {
     }
   })
 
+  // paage for hot items
   $('.hot').on('click', () => {
     $.ajax({
       method: 'GET',
-      url: '/api/menus/',
+      url: '/category/hot',
+      success: (responseJSON) => {
+        console.log(responseJSON.items)
+        addItems(responseJSON.items);
+      }
+    })
+    // addItems(getItemsByCategory('hot'));
+    $('.options-menu').css('display', 'none');
+    $('#menus').css('display', 'none');
+    $('.menu').css('display', 'flex');
+    return;
+  });
+
+  // page for cold items
+  $('.cold').on('click', () => {
+    $.ajax({
+      method: 'GET',
+      url: '/category/cold',
+      success: (responseJSON) => {
+        console.log(responseJSON.items)
+        addItems(responseJSON.items);
+      }
+    })
+    // addItems(getItemsByCategory('hot'));
+    $('.options-menu').css('display', 'none');
+    $('#menus').css('display', 'none');
+    $('.menu').css('display', 'flex');
+    return;
+  });
+
+  // page for baked items
+  $('.baked').on('click', () => {
+    $.ajax({
+      method: 'GET',
+      url: '/category/bake',
       success: (responseJSON) => {
         console.log(responseJSON.items)
         addItems(responseJSON.items);
@@ -51,10 +86,11 @@ $(() => {
 
   $('.order').on('submit', function(event){
     event.preventDefault();
+    console.log('hello')
 
   //   $.ajax({
   //     method: 'POST',
-  //     url: '/order',
+  //     url: '/cart',
   // })
   })
 })
