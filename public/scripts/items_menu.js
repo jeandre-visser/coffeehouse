@@ -1,24 +1,30 @@
 // Creates an item div
-const createItem = (item, itemId) => {
-  // if (item.type === 'baked') {
-  //   return `
-  //     <div class='baked-item' data-id='${itemId}>
-  //       <img src="${item.photo_url}">
-  //       <span>${item.name}</span>
-  //     </div>
-  //     `
-  // }
-
+const createItem = (item) => {
   return `
-    <div class='drink-item' data-id='${itemId}'>
-      <img src="${item.photo_url}">
-      <span>${item.name}</span>
-    </div>
+    <div class='item' data-id='${item.id}'>
+      <div class='item-picture'>
+        <img src="${item.photo_url}">
+      </div>
+      <div class='summary'>
+        <h1>${item.name}</h1>
+        <div>${item.description}</div>
+        <div>$${item.price}</div>
+      </div>
+      <div class='order-button'>
+        <div>
+          <label for="quantity">Quantity:&nbsp&nbsp</label>
+          <input type="number" class='quantity${item.id}' name="quantity" min="1" max="99" >
+        </div>
+        <button class="add-to-order" type="submit" value="${item.id}">Add to Order: $${item.price}</button>
+      </div>
     `
 }
 
+<<<<<<< HEAD
 
 
+=======
+>>>>>>> 0b49830841d34ae5ae95dd757e53ac5c4480333b
 // Appends item
 const addItem = item => {
   $('.menu').append(item);
@@ -30,26 +36,27 @@ const clearItems = () => {
 }
 
 // Clears then adds all menu items
-const addItems = (items, category) => {
+const addItems = (items) => {
   clearItems();
 
   // Appends all items in array
   for (const itemId in items) {
     const item = items[itemId];
-    const newItem = createItem(item, itemId);
+    const newItem = createItem(item);
     addItem(newItem);
   }
 
-  // Brings up options-menu
-  $('.drink-item').on('click', (event) => {
-    let id = $(event.delegateTarget).data().id;
-    clearItems();
-    const options = optionsMenu(items, id)
-    addItem(options);
-    return;
-});
+  // Add to order button event
+  $('.add-to-order').click(function(){
+    const itemId = $(this).val();
+    const quantity = $(`.quantity${itemId}`).val();
+    const template = `<li class='.li${itemId}'>${itemId} x ${quantity}</li>`
+    $('.cart-list').append(template);
+
+  });
 }
 
+<<<<<<< HEAD
 // Test Data
 // let testDB = [{
 //   name: 'Coffee',
@@ -79,3 +86,15 @@ const addItems = (items, category) => {
 //   price: 500,
 //   photo_url: "https://www.corman.pro/uploads/cache/400x400/uploads/recip/recipe/2283/dsc4113.png"
 // }]
+=======
+
+// const loadItems = () => {
+//   $.ajax({
+//     method: 'GET',
+//     url: '/items',
+//     success: (responseJSON) => {
+//       addItems(responseJSON);
+//     }
+//   });
+// }
+>>>>>>> 0b49830841d34ae5ae95dd757e53ac5c4480333b
