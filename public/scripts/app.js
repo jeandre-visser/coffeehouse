@@ -41,7 +41,7 @@ $(() => {
   $('.baked').on('click', () => {
     $.ajax({
       method: 'GET',
-      url: '/category/bake',
+      url: '/category/baked',
       success: (responseJSON) => {
         addItems(responseJSON.items);
       }
@@ -86,7 +86,7 @@ $(() => {
       url: '/summary/order',
       data: formData,
       success: (data) => {
-        alert('Order placed properly')
+
         const { order, name, phone, coffeeItems, timeOfOrder} = data;
         window.location.href = `/summary/order/${order}?name=${name}&phone=${phone}&timeOfOrder=${timeOfOrder}&coffeeItems=${JSON.stringify(coffeeItems)}`
 

@@ -2,16 +2,17 @@
 <html lang="en">
 
 <head>
-  <title>Coffee House</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Coffee House Orders</title>
 
+  <!--Internal css-->
   <link rel="stylesheet" href="/vendor/normalize-4.1.1.css" type="text/css" />
   <link rel="stylesheet" href="/vendor/border-box.css" type="text/css" />
-  <link rel="stylesheet" href="/styles/main.css" type="text/css" />
-  <link rel="stylesheet" href="/styles/layout.css" type="text/css" />
-  <link rel="stylesheet" href="/styles/nav.css" type="text/css" />
-  <link rel="stylesheet" href="/styles/header.css" type="text/css" />
-  <link rel="stylesheet" href="/styles/footer.css" type="text/css" />
-
+  <link rel="stylesheet" href="styles-admin/admin-nav.css" type="text/css" />
+  <link rel="stylesheet" href="styles-admin/admin-header.css" type="text/css" />
+  <link rel="stylesheet" href="styles-admin/admin-footer.css" type="text/css" />
+  <link rel="stylesheet" href="styles-admin/admin-body.css" type="text/css" />
+  <link rel="stylesheet" href="styles-admin/admin-table.css" type="text/css" />
 
 
   <!-- External CSS -->
@@ -22,14 +23,63 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Mochiy+Pop+One&display=swap" rel="stylesheet">
 
+  <!-- Scripts -->
   <script type="text/javascript" src="/vendor/jquery-3.0.0.js"></script>
+  <script type="text/javascript" src="/scripts/app.js"></script>
+  <script type="text/javascript" src="/scripts/items_menu.js"></script>
+  <script type="text/javascript" src="/scripts/options_menu.js"></script>
+  <script type="text/javascript" src="/database.js"></script>
+  <script type="text/javascript" src="admin_orders.js"></script>
 </head>
 
 <body>
-  <nav class="admin">
-    <div id="home"><i class="fa-solid fa-mug-hot"></i> Coffee House</div>
+  <nav>
+    <div><i class="fa-solid fa-mug-hot"></i> Coffee House</div>
   </nav>
   <h1>Orders</h1>
 
+  <section id="orders-index">
+  <div class="orders-table-container">
+    <!-- Table of orders -->
+    <table class="orders-table">
+
+      <!-- Table header -->
+      <thead class="table-header">
+        <tr class="table-row">
+          <th>Customer</th>
+          <th>Phone Number</th>
+          <th>Order</th>
+          <th>Order Date</th>
+          <th>Confirmed</th>
+          <th>Order Ready</th>
+        </tr>
+      </thead>
+
+      <!--Table contents-->
+      <tbody class="table-contents">
+        <tr class="table-row">
+          <td>Ruby</td>
+          <td>7808068345</td>
+          <td>Iced Latte x 2</td>
+          <td>August 1, 2022</td>
+          <td><i class="fas fa-check"></i></td>
+          <td><i class="fas fa-check"></i></td>
+        </tr>
+
+        <tr class="table-row">
+          <td>John</td>
+          <td>7808429555</td>
+          <td>Americano x 5</td>
+          <td>August 2, 2022</td>
+          <td><i class="fas fa-check"></i></td>
+          <td><i class="fas fa-check"></i></td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</section>
+  <footer>
+    <div class="div-footer"><i class="fa-solid fa-mug-hot"></i> Coffee House</div>
+  </footer>
 </body>
 
