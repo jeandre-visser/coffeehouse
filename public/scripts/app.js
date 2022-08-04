@@ -75,7 +75,7 @@ $(() => {
 
     $.ajax({
       method: "POST",
-      url: "/admins",
+      url: "/admin",
       data: order
 
     }).then(()=> {
