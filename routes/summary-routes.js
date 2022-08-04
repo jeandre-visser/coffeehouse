@@ -6,48 +6,12 @@ const databaseFunctions = require('../database');
 
 module.exports = (db) => {
 
-  // Adding summary page
-  // router.get("/order/:id", (req, res) => {
-  //   databaseFunctions.getAllOrders().then(data => {
-  //     // console.log("data", data);
-  //     const name = data[0].name;
-  //     const phone = data[0].phone;
-  //     const timeOfOrder = data[0].order_timestamp;
-  //     const coffeeItems = data[0].coffee_items;
-
-  //     console.log("name", name);
-  //     console.log("phone", phone);
-  //     console.log("time", timeOfOrder);
-  //     // console.log(`Order: ${quantity} cups of ${items} ordered at ${timeOfOrder}.`)
-
-  //     const templateVars = {
-  //       name: name,
-  //       phone: phone,
-  //       timeOfOrder,
-  //       coffeeItems,
-  //     };
-
-  //     res.render("summary", templateVars);
-  //   });
-
-  // });
-
   router.post("/order", (req, res) => {
-    /*
-    Psuedo
-    1. add order
-    call addToOrderedItems
-    returns ID which will take of 2
-    // const id = from create order
-    2. get the order id from the create order
-    3. render on the summary page
-    */
-    //1.
+
     const name = req.body.customer_name;
     const phone = req.body.customer_phone;
-
-    const user_id = 1
     const admin_id = 1
+
     db.query(`
       INSERT INTO users (name, phone)
       VALUES ($1, $2)
@@ -102,17 +66,7 @@ module.exports = (db) => {
         res
           .status(500)
           .json({ error: err.message });
-      });
-
-    //  databaseFunctions.addToOrderedItems().then(data => {
-    //   console.log("data2", data);
-    //  })
-
-    //2.
-    // const id = from create order
-
-
-    // 3. Render on the page
+      });e
 
   })
 
@@ -132,22 +86,3 @@ module.exports = (db) => {
   })
   return router;
 };
-
-/*
-For the Summary page:
-After they click "Place Order" redirect to this page
----
-Thank You user.name or user_id
-=> grab from createUser
-=> grab from createOrder
----
-Grab their total order: Grab from getAllOrders
-  => order.id
-  => SUM (price * quantity) from get
-  => Total Time: totalPrepTime
----
-Return Home / Order Again
-=> Currently have a function returnHome()
-Is there a better method that using returnHome()?
----
-*/
