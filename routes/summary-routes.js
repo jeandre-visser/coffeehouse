@@ -54,7 +54,7 @@ module.exports = (db) => {
         const authToken = '8a1f63b1434a3b3fd32ef4adc3f25f20';
         const client = require('twilio')(accountSid, authToken);
         client.messages.create({
-          body: `Thank you, ${response.name}. Your order has been placed and you'll receive a confirmation text soon.`,
+          body: `Thank you, ${response.name}. Your order at Coffee House has been placed and you'll receive another text message once your order is ready!`,
           from: '+18252503816',
           to: `+${phone}`
         }).then((message) => console.log(message.sid));
