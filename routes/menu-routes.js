@@ -7,6 +7,12 @@ module.exports = (db) => {
     res.render("index");
   });
 
+<<<<<<< HEAD
+=======
+
+
+
+>>>>>>> master
   return router
 }
 

@@ -43,7 +43,10 @@ const menusRoutes = require("./routes/menus.js");
 const itemRoutes = require("./routes/item-pages.js");
 const cartRoutes = require("./routes/cart.js");
 const adminRoutes = require("./routes/admin-routes.js");
+<<<<<<< HEAD
 
+=======
+>>>>>>> master
 
 
 // Mount all resource routes

@@ -8,18 +8,22 @@ header {
   padding: 2% ;
   color: white;
 
-  background-image: url('https://img.graphicsurf.com/2018/05/coffee-vector-seamless-pattern2-720x480.jpg');
-  background-color: #cccccc;
-  background-repeat: repeat;
+
 
   .header-circle {
-    border-radius: 100%;
-    background-color: black;
-    height: 90px;
-    width: 90px;
+    color:black;
     display: flex ;
     align-items: center;
+<<<<<<< HEAD
     font-size: smaller;
     text-align: center;
+=======
+    font-size: clamp(1em, 3vw, 3em);
+    text-align: center;
+    margin-top: 1em;
+    font-style: italic;
+    text-decoration: dotted underline;
+    text-underline-offset: 5px;
+>>>>>>> master
   }
 }
