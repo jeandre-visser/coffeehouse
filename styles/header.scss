@@ -14,16 +14,11 @@ header {
     color:black;
     display: flex ;
     align-items: center;
-<<<<<<< HEAD
-    font-size: smaller;
-    text-align: center;
-=======
     font-size: clamp(1em, 3vw, 3em);
     text-align: center;
     margin-top: 1em;
     font-style: italic;
     text-decoration: dotted underline;
     text-underline-offset: 5px;
->>>>>>> master
   }
 }
