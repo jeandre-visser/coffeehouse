@@ -6,9 +6,15 @@ module.exports = (db) => {
   router.get("/", (req, res) => {
     console.log(req.body)
     db.query(`
-      SELECT orders.id, orders.user_id, order_timestamp, ordered_items.item_id, ordered_items.quantity
-      FROM orders
-      JOIN ordered_items ON orders.id = ordered_items.order_id;`)
+    SELECT users.name, users.phone, orders.id as order_id, order_timestamp,
+    order_ready, items.name as item_name, ordered_items.quantity, sum(ordered_items.quantity * items.price) as price
+    FROM orders
+    JOIN users ON orders.user_id = users.id
+    JOIN ordered_items ON ordered_items.order_id = orders.id
+    JOIN items ON ordered_items.item_id = items.id
+    GROUP BY users.name, users.phone, orders.id, items.name, ordered_items.quantity
+    ORDER BY order_timestamp DESC;`
+    )
       .then(data => {
         const orders = data.rows;
         res.json({ orders });

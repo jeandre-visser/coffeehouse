@@ -1,5 +1,6 @@
 const express = require('express');
-const router  = express.Router();
+const router = express.Router();
+const { textMessage } = require('../helper_functions/textMessage')
 
 const databaseFunctions = require('../database');
 
@@ -41,63 +42,88 @@ module.exports = (db) => {
     2. get the order id from the create order
     3. render on the summary page
     */
-   //1.
-   const user_id = 1
-   const admin_id = 1
+    //1.
+    const name = req.body.customer_name;
+    const phone = req.body.customer_phone;
 
-   db.query(`
-   INSERT INTO orders (user_id, admin_id)
-   VALUES ($1, $2)
-   RETURNING *;
-   `, [user_id, admin_id])
-   .then(data => {
-    const order_items = req.body.order_items;
-    order_items.forEach(item => {
-      db.query(`
-      INSERT INTO ordered_items (item_id, order_id, quantity)
-      VALUES ($1, $2, $3);
-      `, [item.id, data.rows[0].id, item.quantity])
-    })
-    const response = {
-      order: data.rows[0].id,
-      name: req.body.customer_name,
-      phone: req.body.customer_phone,
-      coffeeItems: order_items,
-      timeOfOrder: new Date(),
+    const user_id = 1
+    const admin_id = 1
+    db.query(`
+      INSERT INTO users (name, phone)
+      VALUES ($1, $2)
+      RETURNING id;`, [name, phone])
+      .then(result => {
+        console.log('result', result.rows[0].id)
+        return db.query(`
+          INSERT INTO orders (user_id, admin_id)
+          VALUES ($1, $2)
+          RETURNING id;
+          `, [result.rows[0].id, admin_id])
+      })
+      .then(result => {
+        console.log('result', result.rows[0].id)
+        return db.query(`
+        UPDATE orders
+        SET order_pending = TRUE
+        WHERE id = $1
+        RETURNING id;
+          `, [result.rows[0].id])
+      })
+      .then((data) => {
+        const order_items = req.body.order_items;
+        order_items.forEach(item => {
+          db.query(`
+            INSERT INTO ordered_items (item_id, order_id, quantity)
+            VALUES ($1, $2, $3);
+            `, [item.id, data.rows[0].id, item.quantity])
+        })
+        const response = {
+          order: data.rows[0].id,
+          name: req.body.customer_name,
+          phone: req.body.customer_phone,
+          coffeeItems: order_items,
+          timeOfOrder: new Date(),
+        }
 
-    }
-    // console.log(templateVars);
-    // res.render("summary", templateVars);
-    res.send(response);
+        // Twilio function
+        const accountSid = 'AC382cb58fd2b3eaf7f9f1929fb1467330';
+        const authToken = '8a1f63b1434a3b3fd32ef4adc3f25f20';
+        const client = require('twilio')(accountSid, authToken);
+        client.messages.create({
+          body: `Thank you, ${response.name}. Your order has been placed and you'll receive a confirmation text soon.`,
+          from: '+18252503816',
+          to: `+${phone}`
+        }).then((message) => console.log(message.sid));
 
-   }).catch(err => {
-    console.log("err", err);
-    res
-      .status(500)
-      .json({ error: err.message });
-  });
+        res.send(response);
 
-  //  databaseFunctions.addToOrderedItems().then(data => {
-  //   console.log("data2", data);
-  //  })
+      }).catch(err => {
+        console.log("err", err);
+        res
+          .status(500)
+          .json({ error: err.message });
+      });
 
-   //2.
-   // const id = from create order
+    //  databaseFunctions.addToOrderedItems().then(data => {
+    //   console.log("data2", data);
+    //  })
+
+    //2.
+    // const id = from create order
 
 
     // 3. Render on the page
 
   })
 
-  router.get("/order/:id",(req, res) => {
-    const {id} = req.params;
-    const {name, phone, coffeeItems, timeOfOrder} = req.query;
-    console.log(JSON.parse(coffeeItems));
+  router.get("/order/:id", (req, res) => {
+    const { id } = req.params;
+    const { name, phone, coffeeItems, timeOfOrder } = req.query;
     const templateVars = {
       id,
       name,
       phone,
-      coffeeItems:JSON.parse(coffeeItems),
+      coffeeItems: JSON.parse(coffeeItems),
       timeOfOrder
 
     }

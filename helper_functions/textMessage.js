@@ -1,27 +1,11 @@
-// Credentials for Twilio api use
-const accountSid = process.env.TWILIO_ACCOUNT_SID;
-const authToken = process.env.TWILIO_AUTH_TOKEN;
-const client = require('twilio')(accountSid, authToken);
+// // Credentials for Twilio api use
+// const accountSid = 'AC382cb58fd2b3eaf7f9f1929fb1467330';
+// const authToken = '8a1f63b1434a3b3fd32ef4adc3f25f20';
+// const client = require('twilio')(accountSid, authToken);
 
-
-/** Use the Twilio client to send a text
- *  * @param: {string} 'body' Text message that is sent to recipient
- *  * @param: {string} 'from' text message sender's cell number (same format above)
- * @param: {string} 'to' text message recipient's cell number (no spaces or dashes, add country code at beginning e.g. +1)
- * @param: {function} 'cb' Callback function, by default returns response from Twilio
- */
-
-const textMessage = function(body, from, to, cb = (response) => { return response; }) {
-
-  client.messages.create({body, from, to})
-  .then(message => {
-    console.log(`Successfully sent message to ${to}`);
-    cb(message);
-  })
-  .catch(error => {
-    console.log(`Failed to send message to ${to}`, error)
-    cb(error);
-  });
-};
-
-module.exports = { textMessage };
+//   client.messages.create({
+//     body: "You sent an SMS",
+//     from: '+18252503816',
+//     to: '+16398401087'
+//   }).then((message) => console.log(message.sid));
+// // module.exports = { textMessage };
