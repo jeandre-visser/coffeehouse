@@ -55,12 +55,12 @@
     </section>
     <form id="cart-menu" method='POST' action="/admins">
       <h2>Cart</h2>
-      <ul class="cart-list">
+      <ul class="cart-list" name="items">
       </ul>
       <span>Total: $</span>
       <span class="total-price" type="number"></span>
-      <textarea type="text" placeholder="Your Name" class="user-name"></textarea>
-      <textarea type="tel" placeholder="Phone Number" class="user-phone"></textarea>
+      <textarea type="text" placeholder="Your Name" class="user-name" name="name"></textarea>
+      <textarea type="tel" placeholder="Phone Number" class="user-phone" name="phone-number"></textarea>
       <button id="place-order" type="submit">Place Order</button>
     </form>
   </main>

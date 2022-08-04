@@ -58,15 +58,16 @@ $(() => {
 
   // Place order
   $('#cart-menu').submit(function(event){
+    event.preventDefault();
 
-    orderObj = {
+    order = {
       name: $('.user-name').val(),
       phone: $('.user-phone').val(),
       items: [],
     }
 
     $('li').each((idx, el) => {
-      orderObj.items.push({
+      order.items.push({
         quantity: el.dataset.quantity,
         id: el.dataset.itemid
       })
@@ -75,8 +76,10 @@ $(() => {
     $.ajax({
       method: "POST",
       url: "/admins",
-      data: orderObj
+      data: order
+
     }).then(()=> {
+      console.log('ajax hit')
       alert('success');
     })
     .catch((err) => {
