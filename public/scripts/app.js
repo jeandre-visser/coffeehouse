@@ -8,6 +8,7 @@ $(() => {
     }
   })
 
+  // Toggle hot cold
   $('.hot').on('click', () => {
     $.ajax({
       method: 'GET',
@@ -55,36 +56,31 @@ $(() => {
     return;
   });
 
+  // Place order
+  $('#cart-menu').submit(function(event){
 
-  // $("#add-to-order").click(function() {
-    // // Updates Cart Input Value
-    // const foodId = $(this).val();
-    // const $cartField = $("#cart");
-    // const cartValue = $cartField.val();
+    orderObj = {
+      name: $('.user-name').val(),
+      phone: $('.user-phone').val(),
+      items: [],
+    }
 
-    // $cartField.val(addFoodToCart(foodId,cartValue));
+    $('li').each((idx, el) => {
+      orderObj.items.push({
+        quantity: el.dataset.quantity,
+        id: el.dataset.itemid
+      })
+    })
 
-    // // Updates current total
-    // const priceAsString = $(this).closest("div").find(".price").text();
-    // const $priceField = $(".price-counter");
-    // const currentTotal = $priceField.text();
-
-    // const foodPrice = priceStringToNumber(priceAsString);
-
-    // $priceField.text(updatePrice(foodPrice, currentTotal));
-  // });
-
-//     // const values = $(this).serialize();
-//     // console.log(values)
-
-
-//     // $.ajax({
-//     //   method: 'POST',
-//     //   url: '/cart/',
-//     //   data: values,
-//     //   success: () => {
-//     //     console.log('hello')
-//     //   }
-//     // })
-//   })
+    $.ajax({
+      method: "POST",
+      url: "/admins",
+      data: orderObj
+    }).then(()=> {
+      alert('success');
+    })
+    .catch((err) => {
+      alert(err)
+    })
+  })
 })

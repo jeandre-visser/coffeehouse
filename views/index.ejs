@@ -24,7 +24,7 @@
   <script type="text/javascript" src="/scripts/app.js"></script>
   <script type="text/javascript" src="/scripts/items_menu.js"></script>
   <script type="text/javascript" src="/scripts/options_menu.js"></script>
-  <script type="text/javascript" src="/database.js"></script>
+  <!-- <script type="text/javascript" src="/database.js"></script> -->
 
 
 </head>
@@ -50,14 +50,16 @@
     </section>
     <section class="menu">
     </section>
-    <section id="cart-menu">
+    <form id="cart-menu" method='POST' action="/admins">
       <h2>Cart</h2>
       <ul class="cart-list">
       </ul>
-      <div>total $:</div>
-      <textarea input type="tel" placeholder="Phone Number"></textarea>
-      <button>Place Order</button>
-    </section>
+      <span>Total: $</span>
+      <span class="total-price" type="number"></span>
+      <textarea type="text" placeholder="Your Name" class="user-name"></textarea>
+      <textarea type="tel" placeholder="Phone Number" class="user-phone"></textarea>
+      <button id="place-order" type="submit">Place Order</button>
+    </form>
   </main>
   <footer>
     <div>Contact Us: 1-800-867-5309</div>
