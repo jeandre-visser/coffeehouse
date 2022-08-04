@@ -14,9 +14,8 @@ const getAllOrders = function(limit = 6) {
       order_timestamp,
       users.name,
       users.phone,
-      order_confirmed,
       order_ready,
-      json.agg(json_build_object('item_name', items.name, 'quantity', quantity)) as coffee_items
+      json_agg(json_build_object('item_name', items.name, 'quantity', quantity)) as coffee_items
     FROM orders
     JOIN users ON users.id = user_id
     JOIN ordered_items ON order_id = orders.id
@@ -45,9 +44,9 @@ const getOrderWithId = function(id) {
       users.name as user_name,
       users.phone as user_phone_number,
       admins.name as admin_name,
-      admin.phone as admin_phone_number,
-      json_agg(json_build_object('item_name', items.name, 'quantity', ordered_items.quantity, 'price', (price * quantity), 'photo_url', photo_url)) as coffee_items,
-      SUM(price * quantity) as total
+      admins.phone as admin_phone_number,
+      json_agg(json_build_object('item_name', items.name, 'quantity', ordered_items.quantity, 'price', (items.price * quantity), 'photo_url', photo_url)) as coffee_items,
+      SUM(items.price * quantity) as total
     FROM orders
     JOIN admins ON admins.id = admin_id
     JOIN users ON users.id = user_id
@@ -56,6 +55,7 @@ const getOrderWithId = function(id) {
     WHERE orders.id = $1
     GROUP BY orders.id, users.name, users.phone, admins.name, admins.phone;
   `;
+  console.log("id", id)
 
   return pool
     .query(queryString, [id])
@@ -234,13 +234,13 @@ const getItemsByCategory = category => {
 
 }
 
-console.log(getItemsByCategory('hot')
-  .then(items => {
-    console.log(items)
-    return items
-  })
-  .finally(() => pool.end())
-);
+// console.log(getItemsByCategory('hot')
+//   .then(items => {
+//     console.log(items)
+//     return items
+//   })
+//   // .finally(() => pool.end())
+// );
 
 exports.getItemsByCategory = getItemsByCategory
 

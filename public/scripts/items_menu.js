@@ -15,7 +15,7 @@ const createItem = (item) => {
           <label for="quantity">Quantity:&nbsp&nbsp</label>
           <input type="number" class='quantity${item.id}' name="quantity" min="1" max="99" >
         </div>
-        <button class="add-to-order" type="submit" value="${item.id}">Add to Order: $${item.price}</button>
+        <button class="add-to-order" data-id='${item.id}' data-name="${item.name}" data-price="${item.price}">Add to Order: $${item.price}</button>
       </div>
     `
 }
@@ -37,16 +37,26 @@ const addItems = (items) => {
   // Appends all items in array
   for (const itemId in items) {
     const item = items[itemId];
-    const newItem = createItem(item);
+    const newItem = createItem(item, itemId);
     addItem(newItem);
   }
 
   // Add to order button event
-  $('.add-to-order').click(function(){
-    const itemId = $(this).val();
+  $('.add-to-order').click(function () {
+    // console.log($(this).attr("data-id"));
+    // console.log($(this).attr("data-name"));
+
+    const itemId = $(this).attr("data-id");
     const quantity = $(`.quantity${itemId}`).val();
-    const template = `<li class='.li${itemId}'>${itemId} x ${quantity}</li>`
+    const name = $(this).attr("data-name");
+    const itemPrice = $(this).attr("data-price");
+    const template = `<li class='.li' data-id="${itemId}" data-name="${name}" data-quantity="${quantity}">${name} x ${quantity}</li>`
+
     $('.cart-list').append(template);
+    let price = Number($('.total-price').text());
+    price += itemPrice * quantity;
+    $('.total-price').text(`${price}`)
+
 
   });
 }

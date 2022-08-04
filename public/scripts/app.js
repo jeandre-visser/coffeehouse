@@ -1,3 +1,4 @@
+
 $(() => {
   // Toggle home menu
   $('#home').on('click', () => {
@@ -39,7 +40,7 @@ $(() => {
   $('.baked').on('click', () => {
     $.ajax({
       method: 'GET',
-      url: '/category/baked',
+      url: '/category/bake',
       success: (responseJSON) => {
         addItems(responseJSON.items);
       }
@@ -52,6 +53,45 @@ $(() => {
   // Toggle cart
   $('#cart-icon').on('click', () => {
     $('#cart-menu').slideToggle(0);
+    return;
+  });
+
+  // Return Home Page
+  $('.return-button').on('click', () => {
+    window.location.href = "http://localhost:8080";
+  });
+
+  //1. Make API Call
+  $('.create-order').on('click', function() {
+    const order_items = []
+    $(this).parent().find(".cart-list").children().each(function(){
+      const id = $(this).attr('data-id')
+      const name = $(this).attr('data-name');
+      const quantity = $(this).attr('data-quantity');
+      const newItem = { id, quantity, name };
+      order_items.push(newItem);
+    });
+
+    const customer_name = $("#customername").val();
+    const customer_phone = $("#customerphone").val();
+    const formData = {
+      order_items,
+      customer_name,
+      customer_phone
+    }
+
+    $.ajax({
+      method: 'POST',
+      url: '/summary/order',
+      data: formData,
+      success: (data) => {
+        alert('Order placed properly')
+        const { order, name, phone, coffeeItems, timeOfOrder} = data;
+        window.location.href = `/summary/order/${order}?name=${name}&phone=${phone}&timeOfOrder=${timeOfOrder}&coffeeItems=${JSON.stringify(coffeeItems)}`
+
+      }
+    })
+
     return;
   });
 

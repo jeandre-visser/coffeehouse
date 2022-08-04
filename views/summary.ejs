@@ -24,7 +24,7 @@
   <link href="https://fonts.googleapis.com/css2?family=Mochiy+Pop+One&display=swap" rel="stylesheet">
 
   <script type="text/javascript" src="/vendor/jquery-3.0.0.js"></script>
-  <script type="text/javascript" src="/scripts/client.js"></script>
+  <script type="text/javascript" src="/scripts/app.js"></script>
 </head>
 
 <body>
@@ -40,18 +40,23 @@
 <section id="order-summary">
 
   <div class="thanks">
-    Thank You [user info using templateVars]
+    Thank You <%= name %>, <%= phone %>
   </div>
   <div class="meal-info">
-    Review of Order [order info using templateVars]
+    Review of Order <%= id %>
+    <ul>
+    <% for(const item of coffeeItems) { %>
+      <li>
+      <%= item.name %> x <%= item.quantity %>
+      </li>
+      <% } %>
+    </ul>
+    <div>
+      Ordered At: <%= timeOfOrder  %>
+    </div>
   </div>
   <div class="return-home">
-    <button class="return-button" onclick="returnHome()" type="submit">Return Home / Order Again</button>
-    <script>
-      function returnHome() {
-        location.href = "http://localhost:8080";
-      }
-    </script>
+    <button class="return-button" type="submit">Return Home / Order Again</button>
   </div>
 
 </section>
