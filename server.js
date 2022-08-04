@@ -42,6 +42,7 @@ const summaryRoutes = require("./routes/summary-routes.js");
 const menusRoutes = require("./routes/menus.js");
 const itemRoutes = require("./routes/item-pages.js");
 const cartRoutes = require("./routes/cart.js");
+const adminRoutes = require("./routes/admin-routes.js");
 
 
 // Mount all resource routes
@@ -52,6 +53,7 @@ app.use("/summary", summaryRoutes(db));
 app.use("/menus", menusRoutes(db));
 app.use("/category/", itemRoutes(db));
 app.use("/cart/", cartRoutes(db));
+app.use("/admin", adminRoutes(db));
 
 // Note: mount other resources here, using the same pattern above
 
