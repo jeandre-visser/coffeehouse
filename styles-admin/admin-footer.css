@@ -1,0 +1,18 @@
+footer {
+  background-color: #37d9fd;
+  color: white;
+  width: 100vw;
+  height: 2.5rem;
+  position: fixed;
+  bottom: 0;
+  right: 0;
+  left: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+footer div {
+  float: centre;
+  font-family: 'Mochiy Pop One', sans-serif;
+}
