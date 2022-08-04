@@ -7,7 +7,7 @@ module.exports = (db) => {
     res.render("index");
   });
 
-  
+
 
 
   return router
