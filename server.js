@@ -44,7 +44,6 @@ const itemRoutes = require("./routes/item-pages.js");
 const cartRoutes = require("./routes/cart.js");
 const adminRoutes = require("./routes/admin-routes.js");
 
-
 // Mount all resource routes
 // Note: Feel free to replace the example routes below with your own
 app.use("/api/users", usersRoutes(db));
