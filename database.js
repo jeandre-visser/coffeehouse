@@ -224,24 +224,5 @@ const addToOrderedItems = function(orderId, cart) {
 };
 exports.addToOrderedItems = addToOrderedItems;
 
-// Get items by category
-const getItemsByCategory = category => {
-  return pool
-    .query (`SELECT * FROM items WHERE category = $1`, req.params.category)
-    .then(res => {
-      return res.rows;
-    })
-}
 
-exports.getItemsByCategory = getItemsByCategory;
-
-console.log(getItemsByCategory('hot')
-  .then(items => {
-    console.log(items)
-    return items
-  })
-  .finally(() => pool.end())
-);
-
-exports.getItemsByCategory = getItemsByCategory
 
