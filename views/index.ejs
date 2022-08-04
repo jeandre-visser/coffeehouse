@@ -4,6 +4,9 @@
 <head>
   <title>Coffee House</title>
 
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Coffee House Orders</title>
+
   <!-- Internal CSS -->
   <link rel="stylesheet" href="/vendor/normalize-4.1.1.css" type="text/css" />
   <link rel="stylesheet" href="/vendor/border-box.css" type="text/css" />
@@ -24,13 +27,8 @@
   <script type="text/javascript" src="/scripts/app.js"></script>
   <script type="text/javascript" src="/scripts/items_menu.js"></script>
   <script type="text/javascript" src="/scripts/options_menu.js"></script>
-  <script type="text/javascript" src="/database.js"></script>
+  <!-- <script type="text/javascript" src="/database.js"></script> -->
 
-<<<<<<< HEAD
-
-
-=======
->>>>>>> 0b49830841d34ae5ae95dd757e53ac5c4480333b
 
 </head>
 
@@ -55,14 +53,16 @@
     </section>
     <section class="menu">
     </section>
-    <section id="cart-menu">
+    <form id="cart-menu" method='POST' action="/admins">
       <h2>Cart</h2>
       <ul class="cart-list">
       </ul>
-      <div>total $:</div>
-      <textarea input type="tel" placeholder="Phone Number"></textarea>
-      <button>Place Order</button>
-    </section>
+      <span>Total: $</span>
+      <span class="total-price" type="number"></span>
+      <textarea type="text" placeholder="Your Name" class="user-name"></textarea>
+      <textarea type="tel" placeholder="Phone Number" class="user-phone"></textarea>
+      <button id="place-order" type="submit">Place Order</button>
+    </form>
   </main>
   <footer>
     <div>Contact Us: 1-800-867-5309</div>
