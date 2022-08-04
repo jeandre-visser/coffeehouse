@@ -41,7 +41,7 @@ $(() => {
   $('.baked').on('click', () => {
     $.ajax({
       method: 'GET',
-      url: '/category/bake',
+      url: '/category/baked',
       success: (responseJSON) => {
         addItems(responseJSON.items);
       }
