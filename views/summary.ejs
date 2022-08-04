@@ -28,38 +28,30 @@
 </head>
 
 <body>
-  <nav>
-    <div id="home"><i class="fa-solid fa-mug-hot"></i> Coffee House</div>
-    <div class="hot">Hot Drinks</div>
-    <div class="cold">Cold Drinks</div>
-    <div class="baked">Baked Goods</div>
-    <div id="cart-icon">Cart <i class="fa-solid fa-cart-shopping"></i></div>
-  </nav>
+  <section id="order-summary">
+    <div class="thanks">
+      Thank You <%= name %>, <%= phone %>
+    </div>
+    <div class="meal-info">
+      Review of Order <%= id %>
+      <ul>
+      <% for(const item of coffeeItems) { %>
+        <li>
+        <%= item.name %> x <%= item.quantity %>
+        </li>
+        <% } %>
+      </ul>
+      <div>
+        Ordered At: <%= timeOfOrder  %>
+      </div>
+    </div>
+    <div class="return-home">
+      <button class="return-button" type="submit">Return Home / Order Again</button>
+    </div>
+  </section>
 </body>
 
-<section id="order-summary">
 
-  <div class="thanks">
-    Thank You <%= name %>, <%= phone %>
-  </div>
-  <div class="meal-info">
-    Review of Order <%= id %>
-    <ul>
-    <% for(const item of coffeeItems) { %>
-      <li>
-      <%= item.name %> x <%= item.quantity %>
-      </li>
-      <% } %>
-    </ul>
-    <div>
-      Ordered At: <%= timeOfOrder  %>
-    </div>
-  </div>
-  <div class="return-home">
-    <button class="return-button" type="submit">Return Home / Order Again</button>
-  </div>
-
-</section>
 
 <footer class="footer-in-summary">
   <div>Contact Us: 1-800-867-5309</div>
