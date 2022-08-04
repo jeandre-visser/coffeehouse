@@ -1,5 +1,5 @@
 // Creates an item div
-const createItem = (item) => {
+const createItem = (item, itemIndex) => {
   return `
     <div class='item' data-id='${item.id}'>
       <div class='item-picture'>
@@ -13,7 +13,7 @@ const createItem = (item) => {
       <div class='order-button'>
         <div>
           <label for="quantity">Quantity:&nbsp&nbsp</label>
-          <input type="number" class='quantity${item.id}' name="quantity" min="1" max="99" >
+          <input type="number" class='quantity${item.id}' data-itemid='${item.id}' name="quantity" min="1" max="99" >
         </div>
         <button class="add-to-order" data-id='${item.id}' data-name="${item.name}" data-price="${item.price}">Add to Order: $${item.price}</button>
       </div>
@@ -35,9 +35,9 @@ const addItems = (items) => {
   clearItems();
 
   // Appends all items in array
-  for (const itemId in items) {
-    const item = items[itemId];
-    const newItem = createItem(item, itemId);
+  for (const itemIndex in items) {
+    const item = items[itemIndex];
+    const newItem = createItem(item, itemIndex);
     addItem(newItem);
   }
 
@@ -47,7 +47,9 @@ const addItems = (items) => {
     // console.log($(this).attr("data-name"));
 
     const itemId = $(this).attr("data-id");
+    console.log("itemId", itemId)
     const quantity = $(`.quantity${itemId}`).val();
+    console.log("quantity", quantity)
     const name = $(this).attr("data-name");
     const itemPrice = $(this).attr("data-price");
     const template = `<li class='.li' data-id="${itemId}" data-name="${name}" data-quantity="${quantity}">${name} x ${quantity}</li>`
@@ -58,16 +60,6 @@ const addItems = (items) => {
     $('.total-price').text(`${price}`)
 
 
+
   });
 }
-
-
-// const loadItems = () => {
-//   $.ajax({
-//     method: 'GET',
-//     url: '/items',
-//     success: (responseJSON) => {
-//       addItems(responseJSON);
-//     }
-//   });
-// }

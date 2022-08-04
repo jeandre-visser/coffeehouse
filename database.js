@@ -222,25 +222,5 @@ const addToOrderedItems = function(orderId, cart) {
     .then(result => result[0].rows[0])
     .catch(err => err.message)
 };
+
 exports.addToOrderedItems = addToOrderedItems;
-
-// Get items by category
-const getItemsByCategory = category => {
-  return pool
-    .query (`SELECT * FROM items WHERE category = $1`, [category])
-    .then(res => {
-      return res.rows;
-    })
-
-}
-
-// console.log(getItemsByCategory('hot')
-//   .then(items => {
-//     console.log(items)
-//     return items
-//   })
-//   // .finally(() => pool.end())
-// );
-
-exports.getItemsByCategory = getItemsByCategory
-

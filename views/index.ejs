@@ -4,6 +4,9 @@
 <head>
   <title>Coffee House</title>
 
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Coffee House Orders</title>
+
   <!-- Internal CSS -->
   <link rel="stylesheet" href="/vendor/normalize-4.1.1.css" type="text/css" />
   <link rel="stylesheet" href="/vendor/border-box.css" type="text/css" />
@@ -24,7 +27,7 @@
   <script type="text/javascript" src="/scripts/app.js"></script>
   <script type="text/javascript" src="/scripts/items_menu.js"></script>
   <script type="text/javascript" src="/scripts/options_menu.js"></script>
-  <script type="text/javascript" src="/database.js"></script>
+  <!-- <script type="text/javascript" src="/database.js"></script> -->
 
 
 </head>
@@ -52,7 +55,7 @@
     </section>
     <section id="cart-menu">
       <h2>Cart</h2>
-      <ul class="cart-list">
+      <ul class="cart-list" name="items">
       </ul>
       <span>Total: $</span>
       <span class="total-price" type="number"></span>
