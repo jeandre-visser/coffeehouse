@@ -13,9 +13,9 @@ const createItem = (item, itemIndex) => {
       <div class='order-button'>
         <div>
           <label for="quantity">Quantity:&nbsp&nbsp</label>
-          <input type="number" class='quantity${itemIndex}' data-itemid='${item.id}' name="quantity" min="1" max="99" >
+          <input type="number" class='quantity${item.id}' data-itemid='${item.id}' name="quantity" min="1" max="99" >
         </div>
-        <button class="add-to-order" type="submit" value="${item.id}">Add to Order: $${item.price}</button>
+        <button class="add-to-order" data-id='${item.id}' data-name="${item.name}" data-price="${item.price}">Add to Order: $${item.price}</button>
       </div>
     `
 }
@@ -42,21 +42,24 @@ const addItems = (items) => {
   }
 
   // Add to order button event
-  $('.add-to-order').click(function(){
-    const itemId = $(this).val();
-    const item = items.find((x) => x.id == itemId);
-    const quantity = $(`[data-itemid=${itemId}]`).val();
-    const template = `
-    <li data-itemid='${item.id}' data-quantity="${quantity}">
-      <span>${item.name}</span>
-      <span>&nbspx&nbsp</span>
-      <span>${quantity}</span>
-    </li>
-    `
+  $('.add-to-order').click(function () {
+    // console.log($(this).attr("data-id"));
+    // console.log($(this).attr("data-name"));
+
+    const itemId = $(this).attr("data-id");
+    console.log("itemId", itemId)
+    const quantity = $(`.quantity${itemId}`).val();
+    console.log("quantity", quantity)
+    const name = $(this).attr("data-name");
+    const itemPrice = $(this).attr("data-price");
+    const template = `<li class='.li' data-id="${itemId}" data-name="${name}" data-quantity="${quantity}">${name} x ${quantity}</li>`
 
     $('.cart-list').append(template);
     let price = Number($('.total-price').text());
-    price += item.price * quantity;
+    price += itemPrice * quantity;
     $('.total-price').text(`${price}`)
+
+
+
   });
 }
