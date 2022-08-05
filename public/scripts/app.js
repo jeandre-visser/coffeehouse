@@ -62,7 +62,13 @@ $(() => {
     window.location.href = "http://localhost:8080";
   });
 
-  //1. Make API Call
+  // Clear cart
+  $('#clear-cart').on('click', () => {
+    $('.cart-list').empty();
+    ($('.total-price').text(0));
+  })
+
+  //Make API Call
   $('.create-order').on('click', function() {
     const order_items = []
     $(this).parent().find(".cart-list").children().each(function(){

@@ -56,9 +56,8 @@ module.exports = (db) => {
           coffeeItems: order_items,
           timeOfOrder: new Date(),
         }
-        console.log(response)
-        // Twilio function
 
+        // Twilio function
         client.messages.create({
           body: `Thank you, ${response.name}. Your order at Coffee House has been placed and you'll receive another text message once your order is ready!`,
           from: '+18252503816',
@@ -76,10 +75,8 @@ module.exports = (db) => {
   })
 
   router.get("/order/:id", (req, res) => {
-    console.log('req.query', req.query)
     const { id } = req.params;
     const { name, phone, coffeeItems, timeOfOrder, price } = req.query;
-    console.log('price', price)
     const templateVars = {
       id,
       name,
