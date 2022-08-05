@@ -60,6 +60,7 @@ const addItems = (items) => {
     }
 
     if ($('.cart-list li').length == 0) {
+
       $('.cart-empty').empty()
     }
 
