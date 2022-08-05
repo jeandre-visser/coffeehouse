@@ -30,10 +30,10 @@
 <body>
   <section id="order-summary">
     <div class="thanks">
-      Thank You <%= name %> </br> <%= phone %>
+      Thank you, <%= name %> </br> <%= phone %>
     </div>
     <div class="meal-info">
-      Review of Order <%= id %>
+      Your order ID is:&nbsp <%= id %>
       <ul>
       <% for(const item of coffeeItems) { %>
         <li>
@@ -42,7 +42,7 @@
         <% } %>
       </ul>
       <div>
-        Ordered At: <%= timeOfOrder  %>
+        Ordered At:&nbsp <%= new Date(timeOfOrder).toLocaleString("en-US", { timeZone: 'Canada/Pacific' }) %>
       </div>
     </div>
     <div class="return-home">

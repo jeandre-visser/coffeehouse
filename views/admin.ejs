@@ -65,8 +65,12 @@
           <td><%= orders[order].phone %></td>
           <td><%= orders[order].item_name %> x <%= orders[order].quantity %></td>
           <td><%= new Date(orders[order].order_timestamp).toLocaleString("en-US", { timeZone: 'Canada/Pacific' }) %></td>
-          <td><%= orders[order].order_ready %></td>
+          <% if(orders[order].order_ready == false) { %>
           <td><button data-orderphone=<%= orders[order].phone %> data-orderid=<%= orders[order].order_id %> class='confirm-order'>Confirm order</button></td>
+          <% } else { %>
+            <td><i class="fa-solid fa-check"></i></td>
+          <% } %>
+
         </tr>
         <% } %>
       </tbody>

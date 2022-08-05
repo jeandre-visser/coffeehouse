@@ -43,13 +43,8 @@ const addItems = (items) => {
 
   // Add to order button event
   $('.add-to-order').click(function () {
-    // console.log($(this).attr("data-id"));
-    // console.log($(this).attr("data-name"));
-
     const itemId = $(this).attr("data-id");
-    console.log("itemId", itemId)
     const quantity = $(`.quantity${itemId}`).val();
-    console.log("quantity", quantity)
     const name = $(this).attr("data-name");
     const itemPrice = $(this).attr("data-price");
     const template = `<li class='.li' data-id="${itemId}" data-name="${name}" data-quantity="${quantity}">${name} x ${quantity}</li>`
@@ -58,8 +53,6 @@ const addItems = (items) => {
     let price = Number($('.total-price').text());
     price += itemPrice * quantity;
     $('.total-price').text(`${price}`)
-
-
 
   });
 }
