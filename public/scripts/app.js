@@ -88,8 +88,8 @@ $(() => {
 
     // Check for 10 digit phone number
     const phoneLength = $('#customerphone').val().length
-    if(phoneLength !== 10){
-      alert('Please enter a 10 digit phone number')
+    if(phoneLength !== 11){
+      alert('Please enter a 11 digit phone number')
       return;
     }
 
