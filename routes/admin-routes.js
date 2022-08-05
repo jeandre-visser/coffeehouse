@@ -7,7 +7,6 @@ const client = require('twilio')(accountSid, authToken);
 
 module.exports = (db) => {
   router.get("/", (req, res) => {
-    console.log(req.body)
     db.query(`
     SELECT users.name, users.phone, orders.id as order_id, order_timestamp::timestamp(0),
     order_ready, items.name as item_name, ordered_items.quantity, sum(ordered_items.quantity * items.price) as price
@@ -22,10 +21,10 @@ module.exports = (db) => {
       .then(data => {
 
         const orders = data.rows;
-        console.log(orders)
         const templateVars = {
           orders
         }
+
         res.render("admin", templateVars);
       })
       .catch(err => {
@@ -33,11 +32,9 @@ module.exports = (db) => {
           .status(500)
           .json({ error: err.message });
       });
-      console.log(res)
   });
 
   router.post('/', (req, res) => {
-    console.log('req.body', req.body)
     const orderId = req.body.orderId;
     const orderPhone = req.body.orderPhone
 
@@ -47,7 +44,7 @@ module.exports = (db) => {
       SET order_ready = TRUE
       WHERE id = $1;
       `, [orderId]
-      )
+    )
 
     // twilio
     client.messages.create({

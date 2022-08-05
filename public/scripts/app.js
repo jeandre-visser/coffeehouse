@@ -62,8 +62,37 @@ $(() => {
     window.location.href = "http://localhost:8080";
   });
 
-  //1. Make API Call
+  // Clear cart
+  $('#clear-cart').on('click', () => {
+    $('.cart-empty').empty()
+    $('.cart-empty').text('Your cart is empty.')
+    $('.cart-list').empty();
+    ($('.total-price').text(0));
+  })
+
+  //Make API Call
   $('.create-order').on('click', function() {
+
+    // Check for empty cart
+    if ($('.cart-list li').length == 0) {
+      alert('Please add some items to your cart.')
+      return;
+    }
+
+    //check for name input
+    const nameLength = $('#customername').val().length
+    if(nameLength === 0) {
+      alert('Please enter your name.')
+      return;
+    }
+
+    // Check for 10 digit phone number
+    const phoneLength = $('#customerphone').val().length
+    if(phoneLength !== 10){
+      alert('Please enter a 10 digit phone number')
+      return;
+    }
+
     const order_items = []
     $(this).parent().find(".cart-list").children().each(function(){
       const id = $(this).attr('data-id')
@@ -75,10 +104,13 @@ $(() => {
 
     const customer_name = $("#customername").val();
     const customer_phone = $("#customerphone").val();
+    const price = Number($('.total-price').text());
+
     const formData = {
       order_items,
       customer_name,
-      customer_phone
+      customer_phone,
+      price
     }
 
     $.ajax({
@@ -86,10 +118,8 @@ $(() => {
       url: '/summary/order',
       data: formData,
       success: (data) => {
-
         const { order, name, phone, coffeeItems, timeOfOrder} = data;
-        window.location.href = `/summary/order/${order}?name=${name}&phone=${phone}&timeOfOrder=${timeOfOrder}&coffeeItems=${JSON.stringify(coffeeItems)}`
-
+        window.location.href = `/summary/order/${order}?name=${name}&phone=${phone}&timeOfOrder=${timeOfOrder}&price=${price}&coffeeItems=${JSON.stringify(coffeeItems)}`
       }
     })
 
@@ -109,41 +139,13 @@ $(() => {
       method: 'POST',
       url: '/admin',
       data: data,
+      success: () => {
+        location.reload();
+        // return false;
+      }
     })
     .catch((err) => {
       alert(err)
     })
   })
 })
-
-  // // Place order
-  // $('#cart-menu').submit(function(event){
-  //   event.preventDefault();
-
-  //   order = {
-  //     name: $('.user-name').val(),
-  //     phone: $('.user-phone').val(),
-  //     items: [],
-  //   }
-
-  //   $('li').each((idx, el) => {
-  //     order.items.push({
-  //       quantity: el.dataset.quantity,
-  //       id: el.dataset.itemid
-  //     })
-  //   })
-
-  //   $.ajax({
-  //     method: "POST",
-  //     url: "/admin",
-  //     data: order
-
-  //   }).then(()=> {
-  //     console.log('ajax hit')
-  //     alert('success');
-  //   })
-  //   .catch((err) => {
-  //     alert(err)
-  //   })
-  // })
-// })

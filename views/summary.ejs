@@ -35,7 +35,7 @@
       <div>Confirmation of Order has been Sent to: <%= phone %></div>
     </div>
     <div class="meal-info">
-      Review of Order <%= id %>
+      Your order ID is:&nbsp <%= id %>
       <ul>
       <% for(const item of coffeeItems) { %>
         <li>
@@ -43,8 +43,9 @@
         </li>
         <% } %>
       </ul>
+      <div>Your total is : $ <%= price %></div>
       <div>
-        Ordered At: <%= timeOfOrder  %>
+        Ordered At:&nbsp <%= new Date(timeOfOrder).toLocaleString("en-US", { timeZone: 'Canada/Pacific' }) %>
       </div>
     </div>
     <div class="return-home">
