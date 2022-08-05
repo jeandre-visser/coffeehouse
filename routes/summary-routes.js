@@ -52,10 +52,11 @@ module.exports = (db) => {
           order: data.rows[0].id,
           name: req.body.customer_name,
           phone: req.body.customer_phone,
+          price: req.body.price,
           coffeeItems: order_items,
           timeOfOrder: new Date(),
         }
-
+        console.log(response)
         // Twilio function
 
         client.messages.create({
@@ -75,12 +76,15 @@ module.exports = (db) => {
   })
 
   router.get("/order/:id", (req, res) => {
+    console.log('req.query', req.query)
     const { id } = req.params;
-    const { name, phone, coffeeItems, timeOfOrder } = req.query;
+    const { name, phone, coffeeItems, timeOfOrder, price } = req.query;
+    console.log('price', price)
     const templateVars = {
       id,
       name,
       phone,
+      price,
       coffeeItems: JSON.parse(coffeeItems),
       timeOfOrder
     }

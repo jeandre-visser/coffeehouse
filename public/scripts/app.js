@@ -75,10 +75,15 @@ $(() => {
 
     const customer_name = $("#customername").val();
     const customer_phone = $("#customerphone").val();
+    const price = Number($('.total-price').text());
+
+    console.log('price', price)
+
     const formData = {
       order_items,
       customer_name,
-      customer_phone
+      customer_phone,
+      price
     }
 
     $.ajax({
@@ -87,7 +92,7 @@ $(() => {
       data: formData,
       success: (data) => {
         const { order, name, phone, coffeeItems, timeOfOrder} = data;
-        window.location.href = `/summary/order/${order}?name=${name}&phone=${phone}&timeOfOrder=${timeOfOrder}&coffeeItems=${JSON.stringify(coffeeItems)}`
+        window.location.href = `/summary/order/${order}?name=${name}&phone=${phone}&timeOfOrder=${timeOfOrder}&price=${price}&coffeeItems=${JSON.stringify(coffeeItems)}`
       }
     })
 
