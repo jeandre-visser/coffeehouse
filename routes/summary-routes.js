@@ -52,12 +52,12 @@ module.exports = (db) => {
           order: data.rows[0].id,
           name: req.body.customer_name,
           phone: req.body.customer_phone,
+          price: req.body.price,
           coffeeItems: order_items,
           timeOfOrder: new Date(),
         }
 
         // Twilio function
-
         client.messages.create({
           body: `Thank you, ${response.name}. Your order at Coffee House has been placed and you'll receive another text message once your order is ready!`,
           from: '+18252503816',
@@ -76,11 +76,12 @@ module.exports = (db) => {
 
   router.get("/order/:id", (req, res) => {
     const { id } = req.params;
-    const { name, phone, coffeeItems, timeOfOrder } = req.query;
+    const { name, phone, coffeeItems, timeOfOrder, price } = req.query;
     const templateVars = {
       id,
       name,
       phone,
+      price,
       coffeeItems: JSON.parse(coffeeItems),
       timeOfOrder
     }
