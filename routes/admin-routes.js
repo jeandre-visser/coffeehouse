@@ -6,7 +6,7 @@ module.exports = (db) => {
   router.get("/", (req, res) => {
     console.log(req.body)
     db.query(`
-    SELECT users.name, users.phone, orders.id as order_id, order_timestamp,
+    SELECT users.name, users.phone, orders.id as order_id, order_timestamp::timestamp(0),
     order_ready, items.name as item_name, ordered_items.quantity, sum(ordered_items.quantity * items.price) as price
     FROM orders
     JOIN users ON orders.user_id = users.id
