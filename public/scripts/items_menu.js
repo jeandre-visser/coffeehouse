@@ -43,6 +43,10 @@ const addItems = (items) => {
 
   // Add to order button event
   $('.add-to-order').click(function () {
+
+  if ($('.cart-list li').length == 0) {
+    $('.cart-empty').empty()
+  }
     const itemId = $(this).attr("data-id");
     const quantity = $(`.quantity${itemId}`).val();
     const name = $(this).attr("data-name");

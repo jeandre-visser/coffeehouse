@@ -64,12 +64,20 @@ $(() => {
 
   // Clear cart
   $('#clear-cart').on('click', () => {
+    $('.cart-empty').empty()
+    $('.cart-empty').text('Your cart is empty.')
     $('.cart-list').empty();
     ($('.total-price').text(0));
   })
 
   //Make API Call
   $('.create-order').on('click', function() {
+
+    // Check for empty cart
+    if ($('.cart-list li').length == 0) {
+      alert('Please add some items to your cart.')
+      return;
+    }
 
     //check for name input
     const nameLength = $('#customername').val().length
@@ -105,15 +113,15 @@ $(() => {
       price
     }
 
-    // $.ajax({
-    //   method: 'POST',
-    //   url: '/summary/order',
-    //   data: formData,
-    //   success: (data) => {
-    //     const { order, name, phone, coffeeItems, timeOfOrder} = data;
-    //     window.location.href = `/summary/order/${order}?name=${name}&phone=${phone}&timeOfOrder=${timeOfOrder}&price=${price}&coffeeItems=${JSON.stringify(coffeeItems)}`
-    //   }
-    // })
+    $.ajax({
+      method: 'POST',
+      url: '/summary/order',
+      data: formData,
+      success: (data) => {
+        const { order, name, phone, coffeeItems, timeOfOrder} = data;
+        window.location.href = `/summary/order/${order}?name=${name}&phone=${phone}&timeOfOrder=${timeOfOrder}&price=${price}&coffeeItems=${JSON.stringify(coffeeItems)}`
+      }
+    })
 
     return;
   });
