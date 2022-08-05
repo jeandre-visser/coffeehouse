@@ -8,11 +8,11 @@
   <!--Internal css-->
   <link rel="stylesheet" href="/vendor/normalize-4.1.1.css" type="text/css" />
   <link rel="stylesheet" href="/vendor/border-box.css" type="text/css" />
-  <link rel="stylesheet" href="styles-admin/admin-nav.css" type="text/css" />
-  <link rel="stylesheet" href="styles-admin/admin-header.css" type="text/css" />
-  <link rel="stylesheet" href="styles-admin/admin-footer.css" type="text/css" />
-  <link rel="stylesheet" href="styles-admin/admin-body.css" type="text/css" />
-  <link rel="stylesheet" href="styles-admin/admin-table.css" type="text/css" />
+  <link rel="stylesheet" href="styles/admin-nav.css" type="text/css" />
+  <link rel="stylesheet" href="styles/admin-header.css" type="text/css" />
+  <link rel="stylesheet" href="styles/admin-footer.css" type="text/css" />
+  <link rel="stylesheet" href="styles/admin-body.css" type="text/css" />
+  <link rel="stylesheet" href="styles/admin-table.css" type="text/css" />
 
 
   <!-- External CSS -->
@@ -27,9 +27,9 @@
   <script type="text/javascript" src="/vendor/jquery-3.0.0.js"></script>
   <script type="text/javascript" src="/scripts/app.js"></script>
   <script type="text/javascript" src="/scripts/items_menu.js"></script>
-  <script type="text/javascript" src="/scripts/options_menu.js"></script>
-  <script type="text/javascript" src="/database.js"></script>
-  <script type="text/javascript" src="admin_orders.js"></script>
+  <!-- <script type="text/javascript" src="/scripts/options_menu.js"></script> -->
+  <!-- <script type="text/javascript" src="/database.js"></script> -->
+  <!-- <script type="text/javascript" src="admin_orders.js"></script> -->
 </head>
 
 <body>
@@ -46,34 +46,29 @@
       <!-- Table header -->
       <thead class="table-header">
         <tr class="table-row">
-          <th>Customer</th>
+          <th>Order ID</th>
+          <th>Name</th>
           <th>Phone Number</th>
-          <th>Order</th>
+          <th>Items</th>
           <th>Order Date</th>
-          <th>Confirmed</th>
           <th>Order Ready</th>
+          <th></th>
         </tr>
       </thead>
 
       <!--Table contents-->
       <tbody class="table-contents">
+        <% for(const order in orders) { %>
         <tr class="table-row">
-          <td>Ruby</td>
-          <td>7808068345</td>
-          <td>Iced Latte x 2</td>
-          <td>August 1, 2022</td>
-          <td><i class="fas fa-check"></i></td>
-          <td><i class="fas fa-check"></i></td>
+          <td><%= orders[order].order_id %></td>
+          <td><%= orders[order].name %></td>
+          <td><%= orders[order].phone %></td>
+          <td><%= orders[order].item_name %> x <%= orders[order].quantity %></td>
+          <td><%= new Date(orders[order].order_timestamp).toLocaleString("en-US", { timeZone: 'Canada/Pacific' }) %></td>
+          <td><%= orders[order].order_ready %></td>
+          <td><button data-orderphone=<%= orders[order].phone %> data-orderid=<%= orders[order].order_id %> class='confirm-order'>Confirm order</button></td>
         </tr>
-
-        <tr class="table-row">
-          <td>John</td>
-          <td>7808429555</td>
-          <td>Americano x 5</td>
-          <td>August 2, 2022</td>
-          <td><i class="fas fa-check"></i></td>
-          <td><i class="fas fa-check"></i></td>
-        </tr>
+        <% } %>
       </tbody>
     </table>
   </div>
