@@ -18,11 +18,14 @@
 
   <!-- External CSS -->
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.2/css/all.min.css" integrity="sha512-1sCRPdkRXhBV2PBLUdRb4tMg1w2YPf37qatUFeS7zlBy7jJI8Lf4VHwWfZZfpXtYSLy85pkm9GaYVYMfw5BC1A==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+
+
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Mochiy+Pop+One&display=swap" rel="stylesheet">
 
   <!-- Scripts -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/fontawesome-iconpicker/3.2.0/js/fontawesome-iconpicker.min.js" integrity="sha512-7dlzSK4Ulfm85ypS8/ya0xLf3NpXiML3s6HTLu4qDq7WiJWtLLyrXb9putdP3/1umwTmzIvhuu9EW7gHYSVtCQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
   <script type="text/javascript" src="/vendor/jquery-3.0.0.js"></script>
   <script type="text/javascript" src="/scripts/app.js"></script>
   <script type="text/javascript" src="/scripts/items_menu.js"></script>
@@ -54,11 +57,13 @@
     <section class="menu">
     </section>
     <section id="cart-menu">
-      <h2>Cart</h2>
+      <h2>Cart <i class="fa-duotone fa-coffee-beans"></i></h2>
       <ul class="cart-list" name="items">
       </ul>
-      <span>Total: $</span>
-      <span class="total-price" type="number"></span>
+      <div style="margin-bottom: 2em;">
+        <span">Total: $</span>
+        <span class="total-price" type="number"></span>
+      </div>
       <textarea id="customername" type="text" placeholder="Your Name"></textarea>
       <textarea id="customerphone" input type="tel" placeholder="Phone Number"></textarea>
       <button class="create-order">Place Order</button>
