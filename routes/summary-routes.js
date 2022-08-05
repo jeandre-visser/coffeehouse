@@ -1,8 +1,12 @@
+require("dotenv").config();
+const authToken = process.env.TWILIO_AUTH_TOKEN;
+const accountSid = process.env.TWILIO_ACCOUNT_SID;
+const client = require('twilio')(accountSid, authToken);
+
 const express = require('express');
 const router = express.Router();
-const { textMessage } = require('../helper_functions/textMessage')
-
-const databaseFunctions = require('../database');
+// const { textMessage } = require('../helper_functions/textMessage')
+// const databaseFunctions = require('../database');
 
 module.exports = (db) => {
 
@@ -12,20 +16,21 @@ module.exports = (db) => {
     const phone = req.body.customer_phone;
     const admin_id = 1
 
+    // Insert user into db
     db.query(`
       INSERT INTO users (name, phone)
       VALUES ($1, $2)
       RETURNING id;`, [name, phone])
       .then(result => {
-        console.log('result', result.rows[0].id)
+        // Insert order into db
         return db.query(`
           INSERT INTO orders (user_id, admin_id)
           VALUES ($1, $2)
           RETURNING id;
           `, [result.rows[0].id, admin_id])
       })
+      // Update order_pending to true
       .then(result => {
-        console.log('result', result.rows[0].id)
         return db.query(`
         UPDATE orders
         SET order_pending = TRUE
@@ -33,6 +38,7 @@ module.exports = (db) => {
         RETURNING id;
           `, [result.rows[0].id])
       })
+      // Insert items into db
       .then((data) => {
         const order_items = req.body.order_items;
         order_items.forEach(item => {
@@ -41,6 +47,7 @@ module.exports = (db) => {
             VALUES ($1, $2, $3);
             `, [item.id, data.rows[0].id, item.quantity])
         })
+
         const response = {
           order: data.rows[0].id,
           name: req.body.customer_name,
@@ -50,9 +57,7 @@ module.exports = (db) => {
         }
 
         // Twilio function
-        const accountSid = 'AC382cb58fd2b3eaf7f9f1929fb1467330';
-        const authToken = '8a1f63b1434a3b3fd32ef4adc3f25f20';
-        const client = require('twilio')(accountSid, authToken);
+
         client.messages.create({
           body: `Thank you, ${response.name}. Your order at Coffee House has been placed and you'll receive another text message once your order is ready!`,
           from: '+18252503816',
@@ -62,11 +67,10 @@ module.exports = (db) => {
         res.send(response);
 
       }).catch(err => {
-        console.log("err", err);
         res
           .status(500)
           .json({ error: err.message });
-      });e
+      });
 
   })
 
@@ -79,7 +83,6 @@ module.exports = (db) => {
       phone,
       coffeeItems: JSON.parse(coffeeItems),
       timeOfOrder
-
     }
     res.render("summary", templateVars);
 

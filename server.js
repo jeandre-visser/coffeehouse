@@ -36,12 +36,11 @@ app.use(express.static("public"));
 
 // Separated Routes for each Resource
 // Note: Feel free to replace the example routes below with your own
-const usersRoutes = require("./routes/users");
+const usersRoutes = require("./routes/users-routes");
 const widgetsRoutes = require("./routes/widgets");
 const summaryRoutes = require("./routes/summary-routes.js");
-const menusRoutes = require("./routes/menus.js");
 const itemRoutes = require("./routes/item-pages.js");
-const cartRoutes = require("./routes/cart.js");
+const cartRoutes = require("./routes/cart-routes.js");
 const adminRoutes = require("./routes/admin-routes.js");
 
 // Mount all resource routes
@@ -49,7 +48,6 @@ const adminRoutes = require("./routes/admin-routes.js");
 app.use("/api/users", usersRoutes(db));
 app.use("/api/widgets", widgetsRoutes(db));
 app.use("/summary", summaryRoutes(db));
-app.use("/menus", menusRoutes(db));
 app.use("/category/", itemRoutes(db));
 app.use("/cart/", cartRoutes(db));
 app.use("/admin", adminRoutes(db));

@@ -1,6 +1,9 @@
+require("dotenv").config();
 const express = require('express');
 const router = express.Router();
-
+const authToken = process.env.TWILIO_AUTH_TOKEN;
+const accountSid = process.env.TWILIO_ACCOUNT_SID;
+const client = require('twilio')(accountSid, authToken);
 
 module.exports = (db) => {
   router.get("/", (req, res) => {
@@ -13,48 +16,45 @@ module.exports = (db) => {
     JOIN ordered_items ON ordered_items.order_id = orders.id
     JOIN items ON ordered_items.item_id = items.id
     GROUP BY users.name, users.phone, orders.id, items.name, ordered_items.quantity
-    ORDER BY order_timestamp DESC;`
+    ORDER BY order_timestamp DESC
+    LIMIT 10;`
     )
       .then(data => {
+
         const orders = data.rows;
-        res.json({ orders });
+        console.log(orders)
+        const templateVars = {
+          orders
+        }
+        res.render("admin", templateVars);
       })
       .catch(err => {
         res
           .status(500)
           .json({ error: err.message });
       });
+      console.log(res)
   });
 
   router.post('/', (req, res) => {
     console.log('req.body', req.body)
-    const name = req.body.name;
-    const phoneNum = req.body.phone;
+    const orderId = req.body.orderId;
+    const orderPhone = req.body.orderPhone
 
-    console.log(name);
-    console.log(phoneNum);
-
+    // Update order_ready to true
     db.query(`
-      INSERT INTO users (name, phone)
-      VALUES ($1, $2)
-      RETURNING id;`, [name, phoneNum])
-    .then((result) => {
-      const userId = result.rows[0].id
-      db.query(`
-      INSERT INTO orders (user_id, admin_id)
-      VALUES ($1, 1)
-      RETURNING id;`, [userId])
-    })
-    .then((result) => {
-      console.log('result',result)
-      db.query(`
-      INSERT INTO ordered_items (order_id, item_id, quantity)
-      VALUES ($1, $2, $3)`, [result.rows[0].id, item, quantity])
-    })
-    .catch(err => {
-      res
-        .json({ error: err.message });
-    });
+      UPDATE orders
+      SET order_ready = TRUE
+      WHERE id = $1;
+      `, [orderId]
+      )
+
+    // twilio
+    client.messages.create({
+      body: `Your food is ready for pick-up!`,
+      from: '+18252503816',
+      to: `+${orderPhone}`
+    }).then((message) => console.log(message.sid));
 
     res.sendStatus(201);
   })

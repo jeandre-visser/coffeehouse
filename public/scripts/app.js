@@ -96,34 +96,54 @@ $(() => {
     return;
   });
 
-  // Place order
-  $('#cart-menu').submit(function(event){
-    event.preventDefault();
-
-    order = {
-      name: $('.user-name').val(),
-      phone: $('.user-phone').val(),
-      items: [],
+  // Admin confirm order
+  $('.confirm-order').click(function(){
+    const orderId = $(this).attr('data-orderid')
+    const orderPhone = $(this).attr('data-orderphone')
+    const data = {
+      orderId,
+      orderPhone
     }
 
-    $('li').each((idx, el) => {
-      order.items.push({
-        quantity: el.dataset.quantity,
-        id: el.dataset.itemid
-      })
-    })
-
     $.ajax({
-      method: "POST",
-      url: "/admin",
-      data: order
-
-    }).then(()=> {
-      console.log('ajax hit')
-      alert('success');
+      method: 'POST',
+      url: '/admin',
+      data: data,
     })
     .catch((err) => {
       alert(err)
     })
   })
 })
+
+  // // Place order
+  // $('#cart-menu').submit(function(event){
+  //   event.preventDefault();
+
+  //   order = {
+  //     name: $('.user-name').val(),
+  //     phone: $('.user-phone').val(),
+  //     items: [],
+  //   }
+
+  //   $('li').each((idx, el) => {
+  //     order.items.push({
+  //       quantity: el.dataset.quantity,
+  //       id: el.dataset.itemid
+  //     })
+  //   })
+
+  //   $.ajax({
+  //     method: "POST",
+  //     url: "/admin",
+  //     data: order
+
+  //   }).then(()=> {
+  //     console.log('ajax hit')
+  //     alert('success');
+  //   })
+  //   .catch((err) => {
+  //     alert(err)
+  //   })
+  // })
+// })
