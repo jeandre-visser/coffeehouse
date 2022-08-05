@@ -9,6 +9,8 @@
 .thanks {
   display: flex;
   justify-content: center;
+  flex-direction: column;
+  align-items: center;
   width: 90%;
   padding: 2em;
   border-style: solid;
@@ -17,10 +19,10 @@
 .meal-info {
   display: flex;
   justify-content: center;
-  align-items: center;
-  flex-direction: column;
+  align-items: start;
+  flex-direction:column;
   width: 90%;
-  padding: 10em;
+  padding: 2em;
   border-style: solid;
 }
 

@@ -59,7 +59,7 @@ module.exports = (db) => {
         // Twilio function
 
         client.messages.create({
-          body: `Thank you, ${response.name}. Your order has been placed and you'll receive a confirmation text soon.`,
+          body: `Thank you, ${response.name}. Your order at Coffee House has been placed and you'll receive another text message once your order is ready!`,
           from: '+18252503816',
           to: `+${phone}`
         }).then((message) => console.log(message.sid));
