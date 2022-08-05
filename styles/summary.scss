@@ -4,6 +4,10 @@
   align-items: center;
   flex-direction: column;
   padding-top: 20px;
+  height: 100%;
+  div {
+    background-color: white;
+  }
 }
 
 .thanks {
@@ -22,6 +26,7 @@
   align-items: center;
   flex-direction:column;
   width: 90%;
+  margin: 10px;
   padding: 2em;
   border-style: solid;
 }
@@ -32,10 +37,6 @@
   width: 90%;
   padding: 2em;
   border-style: solid;
-}
-
-div+div {
-  margin-top: 25px;
 }
 
 .return-button {

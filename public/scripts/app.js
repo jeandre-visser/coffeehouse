@@ -68,6 +68,8 @@ $(() => {
     $('.cart-empty').text('Your cart is empty.')
     $('.cart-list').empty();
     ($('.total-price').text(0));
+    $('#item-counter').text('');
+
   })
 
   //Make API Call
@@ -88,8 +90,8 @@ $(() => {
 
     // Check for 10 digit phone number
     const phoneLength = $('#customerphone').val().length
-    if(phoneLength !== 10){
-      alert('Please enter a 10 digit phone number')
+    if(phoneLength !== 11){
+      alert('Please enter a 11 digit phone number')
       return;
     }
 

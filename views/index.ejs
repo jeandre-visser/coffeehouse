@@ -41,7 +41,7 @@
     <div class="hot">Hot Drinks</div>
     <div class="cold">Cold Drinks</div>
     <div class="baked">Baked Goods</div>
-    <div id="cart-icon">Cart <i class="fa-solid fa-cart-shopping"></i></div>
+    <div id="cart-icon">Cart <i class="fa-solid fa-cart-shopping"></i><span id="item-counter"></span></div>
   </nav>
   <header>
     <div>
@@ -58,7 +58,8 @@
     </section>
     <section id="cart-menu">
       <h2>Cart</h2>
-      <ul class="cart-list" name="items">
+      <div>Your cart is empty.</div>
+      <ul class="cart-list" name="items" data-cartItems="0">
       </ul>
       <div style="margin-bottom: 2em;">
         <span">Total: $</span>
