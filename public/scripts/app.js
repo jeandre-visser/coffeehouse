@@ -1,5 +1,11 @@
 
 $(() => {
+
+  // Scroll up button
+  $('#scroll-up').click(() => {
+    scrollTo(0, 0);
+  });
+
   // Toggle home menu
   $('#home').on('click', () => {
     if ($('#menus').css('display') == 'none') {
