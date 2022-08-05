@@ -70,6 +70,21 @@ $(() => {
 
   //Make API Call
   $('.create-order').on('click', function() {
+
+    //check for name input
+    const nameLength = $('#customername').val().length
+    if(nameLength === 0) {
+      alert('Please enter your name.')
+      return;
+    }
+
+    // Check for 10 digit phone number
+    const phoneLength = $('#customerphone').val().length
+    if(phoneLength !== 10){
+      alert('Please enter a 10 digit phone number')
+      return;
+    }
+
     const order_items = []
     $(this).parent().find(".cart-list").children().each(function(){
       const id = $(this).attr('data-id')
@@ -83,8 +98,6 @@ $(() => {
     const customer_phone = $("#customerphone").val();
     const price = Number($('.total-price').text());
 
-    console.log('price', price)
-
     const formData = {
       order_items,
       customer_name,
@@ -92,15 +105,15 @@ $(() => {
       price
     }
 
-    $.ajax({
-      method: 'POST',
-      url: '/summary/order',
-      data: formData,
-      success: (data) => {
-        const { order, name, phone, coffeeItems, timeOfOrder} = data;
-        window.location.href = `/summary/order/${order}?name=${name}&phone=${phone}&timeOfOrder=${timeOfOrder}&price=${price}&coffeeItems=${JSON.stringify(coffeeItems)}`
-      }
-    })
+    // $.ajax({
+    //   method: 'POST',
+    //   url: '/summary/order',
+    //   data: formData,
+    //   success: (data) => {
+    //     const { order, name, phone, coffeeItems, timeOfOrder} = data;
+    //     window.location.href = `/summary/order/${order}?name=${name}&phone=${phone}&timeOfOrder=${timeOfOrder}&price=${price}&coffeeItems=${JSON.stringify(coffeeItems)}`
+    //   }
+    // })
 
     return;
   });
