@@ -7,18 +7,18 @@ Coffee House is a mock coffee shop ordering web app submitted as the midterm pro
 >Jungle home page
 !["Screenshot of the home view"](https://github.com/jeandre-visser/coffeehouse/blob/master/images/Home.png)
 > 1. When presented with the home page, select one of the three categories:
-  - Iced coffee
-  - Hot coffee
-  - Baked Goods
+>  - Iced coffee
+>  - Hot coffee
+>  - Baked Goods
 
 >Products view
 !["Screenshot of the products view"](https://github.com/jeandre-visser/coffeehouse/blob/master/images/Products.png)
 >2. When presented with the menu for the selected category, add any item and as many as you would like! You can also: 
-  - Toggle cart in nav bar to see total price of items
-  - Press clear cart button if you no longer want the added items
-  - If you have scrolled down the menu, you can click on the up arrow in the nav bar which will bring you back to the top of the webpage
-  - Click on other menu categories in the bar at any time
-  - Click on the coffeehouse logo in the nav bar to be brought back to the home page
+>  - Toggle cart in nav bar to see total price of items
+>  - Press clear cart button if you no longer want the added items
+>  - If you have scrolled down the menu, you can click on the up arrow in the nav bar which will bring you back to the top of the webpage
+>  - Click on other menu categories in the bar at any time
+>  - Click on the coffeehouse logo in the nav bar to be brought back to the home page
 
 >Order Summary page
 !["Screenshot of the order view"](https://github.com/jeandre-visser/coffeehouse/blob/master/images/Order-Summary.png)
