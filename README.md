@@ -4,7 +4,7 @@
 Coffee House is a mock coffee shop ordering web app submitted as the midterm project in the Lighthouse Labs Web Development Bootcamp in collaboration with Jeff Stinson and Siraj-Wahaj Ibrahim. The web app is built with JavaScript, EJS, Express, AJAX, jQuery, PostgreSQL, and the Twilio API for SMS notification functionality.
 
 ## Project Walkthrough
->Jungle home page
+Home page
 !["Screenshot of the home view"](https://github.com/jeandre-visser/coffeehouse/blob/master/images/Home.png)
 > 1. When presented with the home page, select one of the three categories:
 >  - Iced coffee
